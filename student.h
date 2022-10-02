@@ -35,7 +35,7 @@ bool CompareDept(Student a, Student b){return a.get_dept()<b.get_dept();}
 class Student_list : Student {
 private:
 public:
-    Student_list
+    Student_list();
 };
 
 class Insertion {
@@ -80,6 +80,11 @@ public:
         return _sort_mode;
     }
 
+    string FilterNull(string s){
+        if(s=="~")s="NULL";
+        return s;
+    }
+
     vector<Student> Sort(){
         fstream file;
         switch(sort_mode){ //입력받은 기준에 따라 정렬하기
@@ -119,11 +124,11 @@ public:
         }
         cout<<'\n';
         for(int i=0; i<v.size(); i++){
-            cout<<left<<setw(blank_space[0])<<student_list[i].get_name();
-            cout<<left<<setw(blank_space[1])<<student_list[i].get_student_id();
-            cout<<left<<setw(blank_space[2])<<student_list[i].get_dept();
-            cout<<left<<setw(blank_space[3])<<student_list[i].get_birth_year();
-            cout<<left<<setw(blank_space[4])<<student_list[i].get_tel();
+            cout<<left<<setw(blank_space[0])<<FilterNull(student_list[i].get_name());
+            cout<<left<<setw(blank_space[1])<<FilterNull(student_list[i].get_student_id());
+            cout<<left<<setw(blank_space[2])<<FilterNull(student_list[i].get_dept());
+            cout<<left<<setw(blank_space[3])<<FilterNull(student_list[i].get_birth_year());
+            cout<<left<<setw(blank_space[4])<<FilterNull(student_list[i].get_tel());
             cout<<'\n';
         }
         cout<<'\n';
