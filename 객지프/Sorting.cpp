@@ -1,6 +1,4 @@
-#include "Student.h"
-#include "Sorting.h"
-using namespace std;
+#include "student_info_management.h"
 
 bool CompareName(Student a, Student b) { return a.get_name() < b.get_name(); } //Sorting에서 필요한 함수들
 bool CompareId(Student a, Student b) { return a.get_student_id() < b.get_student_id(); }
@@ -12,7 +10,7 @@ Sorting::Sorting(vector<Student>& _student_list) { //student_list 받아 오기
 
 void Sorting::set_mode(int _sort_mode) {
     //예외처리 안 함
-    sort_mode = _sort_mode;
+    sort_mode_ = _sort_mode;
     return;
 }
 
@@ -33,7 +31,7 @@ string Sorting::FilterNull(string s) {
 
 void Sorting::Sort() {
     fstream file;
-    switch (sort_mode) { //입력받은 기준에 따라 정렬하기
+    switch (sort_mode_) { //입력받은 기준에 따라 정렬하기
     case 1:
         sort(student_list.begin(), student_list.end(), CompareName);
         break;

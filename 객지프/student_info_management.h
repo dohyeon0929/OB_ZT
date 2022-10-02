@@ -26,10 +26,33 @@ public:
     string get_tel() { return tel; }
 };
 
+class StudentList : Student {
+private:
+
+public:
+    StudentList();
+};
+
+class Insertion {
+private:
+
+public:
+    Insertion();
+
+};
+
+class Search {
+private:
+
+public:
+    Search();
+
+};
+
 class Sorting {
 private:
-    int sort_mode; //정렬 모드 변수 
-    vector<Student> student_list; // = student_list
+    int sort_mode_; //정렬 모드 변수 
+    vector<Student> student_list;
 public:
     Sorting(vector<Student>& _student_list);
     void set_mode(int _sort_mode);
@@ -38,5 +61,28 @@ public:
     string FilterNull(string s);
     void Sort();
     void Print();
+};
+
+class MainMenu {
+private:
+
+public:
+    MainMenu();
+    void Insert() {
+
+    }
+    void Search() {
+
+    }
+    void Sort(vector<Student> student_list) { //임시 
+        Sorting s(student_list);
+        s.Display();
+        s.set_mode(s.Input());
+        s.Sort();
+        s.Print();
+    }
+    void Exit() {
+
+    }
 };
 #endif
