@@ -20,7 +20,7 @@ public:
         this->name = name;
         this->student_id = student_id;
         this->dept = dept;
-        this->birthYear = birth_year;
+        this->birth_year = birth_year;
         this->tel = tel;
     };
     string get_name() { return name; }
@@ -32,10 +32,10 @@ public:
 bool CompareName(Student a, Student b){return a.get_name()<b.get_name();} //Sorting에서 필요한 함수들
 bool CompareId(Student a, Student b){return a.get_student_id()<b.get_student_id();}
 bool CompareDept(Student a, Student b){return a.get_dept()<b.get_dept();}
-class Student_list : Student {
+class Studentlist : Student {
 private:
 public:
-    Student_list();
+    Studentlist();
 };
 
 class Insertion {
@@ -104,7 +104,7 @@ public:
         }
 
         file.open("file1.txt", ios::out | ios::trunc); //파일 내용 다 지우고 정렬한 순서대로 채워넣기 
-        for(int i=0; i<v.size(); i++){
+        for(int i=0; i<student_list.size(); i++){
             file<<student_list[i].get_name()<<' ';
             file<<student_list[i].get_student_id()<<' ';
             file<<student_list[i].get_dept()<<' ';
@@ -113,7 +113,7 @@ public:
             file<<'\n';
         }
         file.close();
-        return v;
+        return student_list;
 
     }
     void Print(){ //정렬 결과 출력하기 
@@ -123,7 +123,7 @@ public:
             cout<<left<<setw(blank_space[i])<<col_name[i];
         }
         cout<<'\n';
-        for(int i=0; i<v.size(); i++){
+        for(int i=0; i<student_list.size(); i++){
             cout<<left<<setw(blank_space[0])<<FilterNull(student_list[i].get_name());
             cout<<left<<setw(blank_space[1])<<FilterNull(student_list[i].get_student_id());
             cout<<left<<setw(blank_space[2])<<FilterNull(student_list[i].get_dept());
@@ -134,9 +134,9 @@ public:
         cout<<'\n';
     }
 };
-class Main_menu {
+class MainMenu {
 private:
 
 public:
-    Main_menu();
+    MainMenu();
 };
