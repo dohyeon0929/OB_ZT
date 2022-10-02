@@ -7,23 +7,23 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
-using namespace std;
+using namespace std; // main Çì´õ
 
 class Student {
 private:
-    string name;
-    string student_id;
-    string dept;
-    string birth_year;
-    string tel;
+    string name_;
+    string student_id_;
+    string dept_;
+    string birth_year_;
+    string tel_;
 public:
     Student();
-    Student(string name, string student_id, string dept, string birth_year, string tel);
-    string get_name() { return name; }
-    string get_student_id() { return student_id; }
-    string get_dept() { return dept; }
-    string get_birth_year() { return birth_year; }
-    string get_tel() { return tel; }
+    Student(string name_, string student_id_, string dept_, string birth_year_, string tel_);
+    string get_name() { return name_; }
+    string get_student_id() { return student_id_; }
+    string get_dept() { return dept_; }
+    string get_birth_year() { return birth_year_; }
+    string get_tel() { return tel_; }
 };
 
 class StudentList : Student {
