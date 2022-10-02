@@ -1,4 +1,4 @@
-#ifndef __STUDENT_INFO_MANAGEMENT_H__
+i#ifndef __STUDENT_INFO_MANAGEMENT_H__
 #define __STUDENT_INFO_MANAGEMENT_H__
 #include <iostream>
 #include <string>
@@ -44,7 +44,7 @@ private: // 입력받는 항목을 private에 저장
     vector<Student> student_list_; // = student_list
 public:
     Insertion(vector<Student>& _student_list);
-    }
+    
     void Input(); //정보 입력 받기
     bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입
