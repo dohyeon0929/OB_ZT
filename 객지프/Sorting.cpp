@@ -33,7 +33,7 @@ void Sorting::Sort() {
     fstream file;
     switch (sort_mode_) { //입력받은 기준에 따라 정렬하기
     case 1:
-        sort(student_list.begin(), student_list.end(), CompareName);
+        sort(student_list.begin(), student_list.end(), CompareName); //sort 함수안에 인자가 세개있는데 comparename이 잇을것이다. 이게 해더파일에 잇다.여튼 저게 comparename이 정의되어있는부분과 이 줄을 가져오면 적용할수있다.
         break;
     case 2:
     case 3:
