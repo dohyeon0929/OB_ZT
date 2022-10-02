@@ -54,8 +54,8 @@ private:
     int sort_mode_; //정렬 모드 변수 
     vector<Student> student_list_;
 public:
-    Sorting(vector<Student>& _student_list);
-    void set_mode(int _sort_mode);
+    Sorting(vector<Student>& student_list_);
+    void set_mode(int sort_mode_);
     void Display();
     int Input();
     string FilterNull(string s);
