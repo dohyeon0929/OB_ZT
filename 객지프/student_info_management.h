@@ -52,7 +52,7 @@ public:
 class Sorting {
 private:
     int sort_mode_; //정렬 모드 변수 
-    vector<Student> student_list;
+    vector<Student> student_list_;
 public:
     Sorting(vector<Student>& _student_list);
     void set_mode(int _sort_mode);

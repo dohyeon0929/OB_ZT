@@ -4,13 +4,13 @@ bool CompareName(Student a, Student b) { return a.get_name() < b.get_name(); } /
 bool CompareId(Student a, Student b) { return a.get_student_id() < b.get_student_id(); }
 bool CompareDept(Student a, Student b) { return a.get_dept() < b.get_dept(); }
 
-Sorting::Sorting(vector<Student>& _student_list) { //student_list 받아 오기 
-    student_list = _student_list;
+Sorting::Sorting(vector<Student>& student_list_) { //student_list 받아 오기 
+    this->student_list_ = student_list_;
 }
 
-void Sorting::set_mode(int _sort_mode) {
+void Sorting::set_mode(int sort_mode_) {
     //예외처리 안 함
-    sort_mode_ = _sort_mode;
+    this->sort_mode_ = sort_mode_;
     return;
 }
 
@@ -24,23 +24,23 @@ int Sorting::Input() { //정렬 모드 입력 받기
     return _sort_mode;
 }
 
-string Sorting::FilterNull(string s) {
-    if (s == "~")s = "NULL";
-    return s;
+string Sorting::FilterNull(string tmp_string) {
+    if (tmp_string == "~")tmp_string = "NULL";
+    return tmp_string;
 }
 
 void Sorting::Sort() {
     fstream file;
     switch (sort_mode_) { //입력받은 기준에 따라 정렬하기
     case 1:
-        sort(student_list.begin(), student_list.end(), CompareName);
+        sort(student_list_.begin(), student_list_.end(), CompareName);
         break;
     case 2:
     case 3:
-        sort(student_list.begin(), student_list.end(), CompareId);
+        sort(student_list_.begin(), student_list_.end(), CompareId);
         break;
     case 4:
-        sort(student_list.begin(), student_list.end(), CompareDept);
+        sort(student_list_.begin(), student_list_.end(), CompareDept);
         break;
     default:
         //에러 처리 따로 안 해주고 그냥 아무런 변화 없게 함. 
@@ -48,12 +48,12 @@ void Sorting::Sort() {
     }
 
     file.open("file1.txt", ios::out | ios::trunc); //파일 내용 다 지우고 정렬한 순서대로 채워넣기 
-    for (int i = 0; i < student_list.size(); i++) {
-        file << student_list[i].get_name() << ' ';
-        file << student_list[i].get_student_id() << ' ';
-        file << student_list[i].get_dept() << ' ';
-        file << student_list[i].get_birth_year() << ' ';
-        file << student_list[i].get_tel() << ' ';
+    for (int i = 0; i < student_list_.size(); i++) {
+        file << student_list_[i].get_name() << ' ';
+        file << student_list_[i].get_student_id() << ' ';
+        file << student_list_[i].get_dept() << ' ';
+        file << student_list_[i].get_birth_year() << ' ';
+        file << student_list_[i].get_tel() << ' ';
         file << '\n';
     }
     file.close();
@@ -67,12 +67,12 @@ void Sorting::Print() { //정렬 결과 출력하기
         cout << left << setw(blank_space[i]) << col_name[i];
     }
     cout << '\n';
-    for (int i = 0; i < student_list.size(); i++) {
-        cout << left << setw(blank_space[0]) << FilterNull(student_list[i].get_name());
-        cout << left << setw(blank_space[1]) << FilterNull(student_list[i].get_student_id());
-        cout << left << setw(blank_space[2]) << FilterNull(student_list[i].get_dept());
-        cout << left << setw(blank_space[3]) << FilterNull(student_list[i].get_birth_year());
-        cout << left << setw(blank_space[4]) << FilterNull(student_list[i].get_tel());
+    for (int i = 0; i < student_list_.size(); i++) {
+        cout << left << setw(blank_space[0]) << FilterNull(student_list_[i].get_name());
+        cout << left << setw(blank_space[1]) << FilterNull(student_list_[i].get_student_id());
+        cout << left << setw(blank_space[2]) << FilterNull(student_list_[i].get_dept());
+        cout << left << setw(blank_space[3]) << FilterNull(student_list_[i].get_birth_year());
+        cout << left << setw(blank_space[4]) << FilterNull(student_list_[i].get_tel());
         cout << '\n';
     }
     cout << '\n';
