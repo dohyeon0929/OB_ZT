@@ -84,7 +84,10 @@ public:
 
     }
     void Search() {
-
+        Search s(studentlist);
+        s.Display();
+        s.search(s.Input());
+        s.Print();
     }
     void Sort(vector<Student> student_list) { //юс╫ц 
         Sorting s(student_list);
