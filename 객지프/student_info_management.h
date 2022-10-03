@@ -50,6 +50,11 @@ private: // 입력받는 항목을 private에 저장
     StudentList student_list_; // = student_list
 public:
     Insertion(StudentList& student_list_); // 생성자                 
+    bool set_input_name(string s);
+    bool set_input_student_id(string s);
+    bool set_input_dept(string s);
+    bool set_input_birth_year(string s);
+    bool set_input_tel(string s);
     void Input(); //정보 입력 받기
     bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입

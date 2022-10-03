@@ -83,17 +83,43 @@ void Sorting::Sort() {
 void Sorting::Print() { //정렬 결과 출력하기 
     int blank_space[] = { 16,12,30,12,12 };
     string col_name[] = { "Name","Student ID","Department","Birth Year","Tel" };
+    cout << "+";
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < blank_space[i]; j++) {
+            cout << '-';
+        }
+        cout << '+';
+    }
+    cout << '\n';
+    cout << '|';
     for (int i = 0; i < 5; i++) {
         cout << left << setw(blank_space[i]) << col_name[i];
+        cout << '|';
+    }
+    cout << '\n';
+    cout << "+";
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < blank_space[i]; j++) {
+            cout << '-';
+        }
+        cout << '+';
     }
     cout << '\n';
     for (int i = 0; i < student_list_.size(); i++) {
-        cout << left << setw(blank_space[0]) << FilterNull(student_list_[i].get_name());
-        cout << left << setw(blank_space[1]) << FilterNull(student_list_[i].get_student_id());
-        cout << left << setw(blank_space[2]) << FilterNull(student_list_[i].get_dept());
-        cout << left << setw(blank_space[3]) << FilterNull(student_list_[i].get_birth_year());
-        cout << left << setw(blank_space[4]) << FilterNull(student_list_[i].get_tel());
+        cout << '|';
+        cout << left << setw(blank_space[0]) << FilterNull(student_list_[i].get_name())<<'|';
+        cout << left << setw(blank_space[1]) << FilterNull(student_list_[i].get_student_id())<< '|';
+        cout << left << setw(blank_space[2]) << FilterNull(student_list_[i].get_dept())<< '|';
+        cout << left << setw(blank_space[3]) << FilterNull(student_list_[i].get_birth_year())<< '|';
+        cout << left << setw(blank_space[4]) << FilterNull(student_list_[i].get_tel())<< '|';
         cout << '\n';
+    }
+    cout << "+";
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < blank_space[i]; j++) {
+            cout << '-';
+        }
+        cout << '+';
     }
     cout << '\n';
 }

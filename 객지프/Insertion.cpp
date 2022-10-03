@@ -1,5 +1,28 @@
 #include "student_info_management.h"
+bool Insertion::set_input_name(string s) {
+    input_name = s;
+    return true;
+}
+bool Insertion::set_input_student_id(string s) {
+    input_studentID = s;
+    return true;
 
+}
+bool Insertion::set_input_dept(string s) {
+    input_dept = s;
+    return true;
+
+}
+bool Insertion::set_input_birth_year(string s) {
+    input_birthYear = s;
+    return true;
+
+}
+bool Insertion::set_input_tel(string s) {
+    input_tel = s;
+    return true;
+
+}
 Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기 
     this->student_list_ = student_list_;
 }
@@ -10,19 +33,29 @@ void Insertion::Input() {
     string input_string; //_getch() 이후 입력받는 용
 
     cout << "Name ? ";
-    cin >> input_name;
+    cin.ignore();
+    getline(cin, input_string);
+    set_input_name(input_string);
 
     cout << "Student ID (10 digits)? ";
-    cin >> input_studentID;
+    cin.ignore();
+    getline(cin, input_string);
+    set_input_student_id(input_string);
 
     cout << "Birth Year (4 digits)? ";
-    cin >> input_birthYear;
+    cin.ignore();
+    getline(cin, input_string);
+    set_input_birth_year(input_string);
 
     cout << "Department? ";
-    cin >> input_dept;
+    cin.ignore();
+    getline(cin, input_string);
+    set_input_dept(input_string);
 
     cout << "Tel? ";
-    cin >> input_tel;
+    cin.ignore();
+    getline(cin, input_string);
+    set_input_tel(input_string);
 
     /*
 
