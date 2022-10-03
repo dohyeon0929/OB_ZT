@@ -1,4 +1,4 @@
-i#ifndef __STUDENT_INFO_MANAGEMENT_H__
+#ifndef __STUDENT_INFO_MANAGEMENT_H__
 #define __STUDENT_INFO_MANAGEMENT_H__
 #include <iostream>
 #include <string>
@@ -27,12 +27,19 @@ public:
     string get_tel() { return tel_; }
 };
 
-class StudentList : Student {
+class StudentList  {
 private:
-
+    vector<Student>student_info_list_; //student 객체를 담을 리스트(vector)
 public:
-    StudentList();
+    StudentList(); // 기본 생성자	
+    vector<string> Split(string str, char Delimiter); //문자열 파싱
+    void StudentAdd(string name, string studentID,
+        string dept, string birthYear, string tel, vector<Student>student_list); //학생 추가
+    void SaveList(vector<Student>student_list); // 파일에 저장
+    vector<Student>get_student_list() { return student_info_list_; };// student_list 
+    //bool DefaultCompare(Student a, Student b) { return a.get_name() > b.get_name(); };; // 기본 sorting 기능
 };
+
 class Insertion {
 private: // 입력받는 항목을 private에 저장
     string input_name;
@@ -80,35 +87,18 @@ public:
     void Print();
 };
 
-class MainMenu {
+class MainMenu
+{
 private:
-
+    int mode_;
 public:
-    MainMenu();
-    void Insert(vector<Student> student_list) {
-        Insert i(student_lis);
-        i.Input();
-        i.CheckError();
-        i.InsertIn();
-        i.GoToMain();
-
-    }
-    void Search(vector<Student> student_list) {
-        Searching s(student_list);
-        s.Display();
-        s.set_mode(s.Input());
-        s.Search();
-        s.Print();
-    }
-    void Sort(vector<Student> student_list) {
-        Sorting s(student_list);
-        s.Display();
-        s.set_mode(s.Input());
-        s.Sort();
-        s.Print();
-    }
-    void Exit() {
-        exit(0);
-    }
+    int select;
+    void Start();
+    void set_mode(int selection); //mode_ 변경자 
+    void Insertion(vector<Student>student_list);
+    void Sort(vector<Student>student_list);
+    void Search(vector<Student>student_list);
+    void Exit();
 };
+
 #endif

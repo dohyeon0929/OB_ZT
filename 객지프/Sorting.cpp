@@ -49,11 +49,11 @@ void Sorting::Sort() {
 
     file.open("file1.txt", ios::out | ios::trunc); //파일 내용 다 지우고 정렬한 순서대로 채워넣기 
     for (int i = 0; i < student_list_.size(); i++) {
-        file << student_list_[i].get_name() << ' ';
-        file << student_list_[i].get_student_id() << ' ';
-        file << student_list_[i].get_dept() << ' ';
-        file << student_list_[i].get_birth_year() << ' ';
-        file << student_list_[i].get_tel() << ' ';
+        file << student_list_[i].get_name() << ';';
+        file << student_list_[i].get_student_id() << ';';
+        file << student_list_[i].get_dept() << ';';
+        file << student_list_[i].get_birth_year() << ';';
+        file << student_list_[i].get_tel() << ';';
         file << '\n';
     }
     file.close();
