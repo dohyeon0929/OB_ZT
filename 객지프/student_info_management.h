@@ -32,7 +32,6 @@ private:
 public:
     StudentList();
 };
-
 class Insertion {
 private:
 
@@ -41,12 +40,19 @@ public:
 
 };
 
-class Search {
+class Searching {
 private:
-
+    int search_mode_; // 서치 모드 변수
+    vector<Student> student_list;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
+    vector<Student> student_search_list; // 조건에 맞는 student를 담을 새로운 list를 뜻함
 public:
-    Search();
-
+    Searching(vector<Student>& _student_list); //생성자
+    void Display(); //서치 선택시 첫 화면
+    void set_mode(int search_mode_); //서치 모드 변경자 
+    int Input();  // 서치모드 입력받기
+    void Search(); //서치
+    void Print(); //실제로 출력
+    string FilterNull(string s); // Print할 때 필요한 함수
 };
 
 class Sorting {
@@ -56,9 +62,9 @@ private:
 public:
     Sorting(vector<Student>& student_list_);
     void set_mode(int sort_mode_);
-    void Display();
-    int Input();
-    string FilterNull(string s);
+    void Display(); //sort 선택 시 첫 화면 
+    int Input(); 
+    string FilterNull(string s); //Print할 때 필요한 함수 
     void Sort();
     void Print();
 };
@@ -67,14 +73,19 @@ class MainMenu {
 private:
 
 public:
-    MainMenu();
+    MainMenu() {
+    }
     void Insert() {
 
     }
-    void Search() {
-
+    void Search(vector<Student> student_list) {
+        Searching s(student_list);
+        s.Display();
+        s.set_mode(s.Input());
+        s.Search();
+        s.Print();
     }
-    void Sort(vector<Student> student_list) { //임시 
+    void Sort(vector<Student> student_list) {
         Sorting s(student_list);
         s.Display();
         s.set_mode(s.Input());
@@ -82,7 +93,7 @@ public:
         s.Print();
     }
     void Exit() {
-
+        exit(0);
     }
 };
 #endif
