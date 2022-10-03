@@ -66,8 +66,9 @@ private:
 public:
     Searching(vector<Student>& _student_list); //생성자
     void Display(); //서치 선택시 첫 화면
-    void set_mode(int search_mode_); //서치 모드 변경자 
-    int Input();  // 서치모드 입력받기
+    int get_mode() { return search_mode_; }; //서치 모드 접근자
+    bool set_mode(string search_mode_); //서치 모드 변경자 
+    bool Input();  // 서치모드 입력받기
     void Search(); //서치
     void Print(); //실제로 출력
     string FilterNull(string s); // Print할 때 필요한 함수
@@ -79,12 +80,13 @@ private:
     vector<Student> student_list_;
 public:
     Sorting(vector<Student>& student_list_);
-    void set_mode(int sort_mode_);
+    int get_mode() { return sort_mode_; } //소트 모드 접근자
+    bool set_mode(string sort_mode_);//소트 모드 변경자 
     void Display(); //sort 선택 시 첫 화면 
-    int Input(); 
+    bool Input(); //sort 모드 입력 받기 
     string FilterNull(string s); //Print할 때 필요한 함수 
-    void Sort();
-    void Print();
+    void Sort(); //sort 프로세스 
+    void Print();//정렬 결과 출력 (최종 제출할 때에는 없어도 됨)
 };
 
 class MainMenu
@@ -92,9 +94,8 @@ class MainMenu
 private:
     int mode_;
 public:
-    int select;
     void Start();
-    void set_mode(int selection); //mode_ 변경자 
+    void set_mode(string mode_); //mode_ 변경자 
     void Insertion(vector<Student>student_list);
     void Sort(vector<Student>student_list);
     void Search(vector<Student>student_list);
