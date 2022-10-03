@@ -1,4 +1,4 @@
-#ifndef __STUDENT_INFO_MANAGEMENT_H__
+i#ifndef __STUDENT_INFO_MANAGEMENT_H__
 #define __STUDENT_INFO_MANAGEMENT_H__
 #include <iostream>
 #include <string>
@@ -7,6 +7,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
+#include <conio.h> //_getch가 포함되어있는 헤더
 using namespace std; // main 헤더
 
 class Student {
@@ -33,10 +34,20 @@ public:
     StudentList();
 };
 class Insertion {
-private:
-
+private: // 입력받는 항목을 private에 저장
+    string input_name;
+    string input_studentID;
+    string input_dept;
+    string input_birthYear;
+    string input_tel;
+    vector<Student> student_list_; // = student_list
 public:
-    Insertion();
+    Insertion(vector<Student>& _student_list);
+    
+    void Input(); //정보 입력 받기
+    bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
+    void InsertIn();//삽입
+    void GoToMain(); //메인 화면으로 돌아가는 함수(개발예정)
 
 };
 
@@ -73,9 +84,13 @@ class MainMenu {
 private:
 
 public:
-    MainMenu() {
-    }
-    void Insert() {
+    MainMenu();
+    void Insert(vector<Student> student_list) {
+        Insert i(student_lis);
+        i.Input();
+        i.CheckError();
+        i.InsertIn();
+        i.GoToMain();
 
     }
     void Search(vector<Student> student_list) {
