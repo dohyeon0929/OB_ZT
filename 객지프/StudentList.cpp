@@ -1,5 +1,8 @@
 #include"student_info_management.h"
-
+bool DefaultCompare(Student a, Student b) { //정렬 1순위 : 이름, 정렬 2순위 : 학번 
+    if (a.get_name() != b.get_name()) return a.get_name() < b.get_name();
+    else return a.get_student_id() < b.get_student_id();
+}
 //1. 문자열 파싱
 vector<string> StudentList::Split(string str, char Delimiter) {
 	istringstream iss(str);             // istringstream에 str 담기
@@ -63,6 +66,7 @@ StudentList::StudentList()
 
 			this->student_info_list_.push_back(result); //vector에 넣어주기
 		}
+		sort(this->student_info_list_.begin(), this->student_info_list_.end(), DefaultCompare);
 		file.close();
 	}
 	else //파일 없으면

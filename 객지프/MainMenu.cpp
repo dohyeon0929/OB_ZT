@@ -13,15 +13,15 @@ void MainMenu::set_mode(string mode_) {
 		else throw mode_;
 	}
 	catch (string exception) {
-		cout << "Error : Invalid input\n";
+		cout << "Error : Invalid i	nput\n";
 		this->mode_ = 0;
 	}
 }
 void MainMenu::Start() //시작화면, setMode메소드 호출함
 {
-	StudentList list;
 	while (1)
 	{
+		StudentList list;
 		string input_text;
 		cout << "1. Insertion" << endl;
 		cout << "2. Search" << endl;
@@ -82,7 +82,7 @@ void MainMenu::Search(vector<Student>student_list)
 	while (true) {
 		s.Display();
 		if (s.Input()) {
-			if (s.get_mode() == 6) { // 5. back
+			if (s.get_mode() == 6) { // 6. back
 				break;
 			}
 			else {

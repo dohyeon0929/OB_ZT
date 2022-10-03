@@ -1,6 +1,6 @@
 #include "student_info_management.h"
 
-Insertion::Insertion(StudentList student_list_) { //student_list 받아 오기 
+Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기 
     this->student_list_ = student_list_;
 }
 
@@ -77,7 +77,7 @@ void Insertion::InsertIn()
     if (CheckError() == 1) //중복된 ID가 아니므로 삽입
     {
         // cout << "hey"; // 확인용
-        student_list_.StudentAdd(input_name, input_studentID, input_dept, input_birthYear, input_tel, student_list_.get_student_list());
+        student_list_.StudentAdd(input_name, input_studentID, input_dept, input_birthYear, input_tel, this->student_list_.get_student_list());
     }
 }
 
