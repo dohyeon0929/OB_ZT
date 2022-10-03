@@ -12,11 +12,11 @@ using namespace std; // main 헤더
 
 class Student {
 private:
-    string name_;
-    string student_id_;
-    string dept_;
-    string birth_year_;
-    string tel_;
+    std::string name_;
+    std::string student_id_;
+    std::string dept_;
+    std::string birth_year_;
+    std::string tel_;
 public:
     Student();
     Student(string name_, string student_id_, string dept_, string birth_year_, string tel_);
@@ -27,7 +27,7 @@ public:
     string get_tel() { return tel_; }
 };
 
-class StudentList  {
+class StudentList {
 private:
     vector<Student>student_info_list_; //student 객체를 담을 리스트(vector)
 public:
@@ -47,10 +47,9 @@ private: // 입력받는 항목을 private에 저장
     string input_dept;
     string input_birthYear;
     string input_tel;
-    vector<Student> student_list_; // = student_list
+    StudentList student_list_; // = student_list
 public:
-    Insertion(vector<Student>& _student_list);
-    
+    Insertion(StudentList student_list_); // 생성자                 
     void Input(); //정보 입력 받기
     bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입
@@ -96,10 +95,11 @@ private:
 public:
     void Start();
     void set_mode(string mode_); //mode_ 변경자 
-    void Insertion(vector<Student>student_list);
+    void Insert(StudentList student_list);
     void Sort(vector<Student>student_list);
     void Search(vector<Student>student_list);
     void Exit();
 };
 
 #endif
+

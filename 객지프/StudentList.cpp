@@ -25,7 +25,7 @@ void StudentList::StudentAdd(string name, string studentID,
 
 
 //3. 파일 저장
-void StudentList::SaveList(vector<Student>student_list) 
+void StudentList::SaveList(vector<Student>student_list)
 {
 	fstream file;
 	file.open("file1.txt", ios::out | ios::trunc);
@@ -53,7 +53,7 @@ StudentList::StudentList()
 			vector<string> readline = Split(line, ';'); //readline에 문장 파싱 값 저장
 			for (int i = 0; i < readline.size(); i++)//readline의 원소 개수만큼
 			{
-				if (readline[i] =="")
+				if (readline[i] == "")
 				{
 					readline[i] = "~";
 				}
@@ -70,7 +70,7 @@ StudentList::StudentList()
 		ofstream open("file1.txt"); //파일 생성
 		cout << "file created" << "\n";
 	}
-	
+
 	SaveList(student_info_list_); //생성된 객체 벡터 값 파일에 저장
 	return;
 }
