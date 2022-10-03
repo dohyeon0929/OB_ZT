@@ -1,5 +1,8 @@
 #include"student_info_management.h"
-
+bool DefaultCompare(Student a, Student b) { //정렬 1순위 : 이름, 정렬 2순위 : 학번 
+    if (a.get_name() != b.get_name()) return a.get_name() < b.get_name();
+    else return a.get_student_id() < b.get_student_id();
+}
 //1. 문자열 파싱
 vector<string> StudentList::Split(string str, char Delimiter) {
 	istringstream iss(str);             // istringstream에 str 담기
@@ -25,7 +28,7 @@ void StudentList::StudentAdd(string name, string studentID,
 
 
 //3. 파일 저장
-void StudentList::SaveList(vector<Student>student_list) 
+void StudentList::SaveList(vector<Student>student_list)
 {
 	fstream file;
 	file.open("file1.txt", ios::out | ios::trunc);
@@ -53,7 +56,7 @@ StudentList::StudentList()
 			vector<string> readline = Split(line, ';'); //readline에 문장 파싱 값 저장
 			for (int i = 0; i < readline.size(); i++)//readline의 원소 개수만큼
 			{
-				if (readline[i] =="")
+				if (readline[i] == "")
 				{
 					readline[i] = "~";
 				}
@@ -63,6 +66,7 @@ StudentList::StudentList()
 
 			this->student_info_list_.push_back(result); //vector에 넣어주기
 		}
+		sort(this->student_info_list_.begin(), this->student_info_list_.end(), DefaultCompare);
 		file.close();
 	}
 	else //파일 없으면
@@ -70,7 +74,7 @@ StudentList::StudentList()
 		ofstream open("file1.txt"); //파일 생성
 		cout << "file created" << "\n";
 	}
-	
+
 	SaveList(student_info_list_); //생성된 객체 벡터 값 파일에 저장
 	return;
 }

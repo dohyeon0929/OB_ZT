@@ -100,8 +100,8 @@ void Searching::Search() {
         case 5: //list all
             for (int i = 0; i < student_list.size(); i++) {
                 student_search_list.push_back(student_list[i]);
-                sort(student_search_list.begin(), student_search_list.end(), CompareName2);
             }
+            sort(student_search_list.begin(), student_search_list.end(), CompareName2);
             break;
 
         default:
