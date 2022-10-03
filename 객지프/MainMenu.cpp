@@ -12,7 +12,7 @@ void MainMenu::set_mode(string mode_) {
 		}
 		else throw mode_;
 	}
-	catch(string exception){
+	catch (string exception) {
 		cout << "Error : Invalid input\n";
 		this->mode_ = 0;
 	}
@@ -33,7 +33,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 		switch (this->mode_)
 		{
 		case 1:
-			Insertion(list.get_student_list());
+			Insert(list);
 			break;
 		case 2:
 			Search(list.get_student_list());
@@ -50,10 +50,12 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 	}
 }
 
-void MainMenu::Insertion(vector<Student>student_list)
+void MainMenu::Insert(StudentList student_list)
 {
-	//Insertion();
-	return;
+	Insertion s(student_list);
+	s.Input();
+	s.CheckError();
+	s.InsertIn();
 }
 
 void MainMenu::Sort(vector<Student>student_list)
