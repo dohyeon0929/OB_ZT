@@ -1,0 +1,10 @@
+﻿  App.cpp
+  MainMenu.cpp
+c1xx : fatal error C1083: 소스 파일을 열 수 없습니다. 'MainMenu.cpp': No such file or directory
+  Searching.cpp
+c1xx : fatal error C1083: 소스 파일을 열 수 없습니다. 'Searching.cpp': No such file or directory
+  Sorting.cpp
+  Student.cpp
+  StudentList.cpp
+c1xx : fatal error C1083: 소스 파일을 열 수 없습니다. 'StudentList.cpp': No such file or directory
+  코드를 생성하고 있습니다...
