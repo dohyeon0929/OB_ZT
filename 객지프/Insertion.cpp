@@ -26,36 +26,109 @@ bool Insertion::set_input_tel(string s) {
 Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기 
     this->student_list_ = student_list_;
 }
-
-void Insertion::Input() {
+bool Insertion::Input() {
     //입력 받은 정보를 저장. 그리고 의무 아닌거 없을때 ~ 처리, 
     char tmp; //_getch() 입력 받는 용 
     string input_string; //_getch() 이후 입력받는 용
 
     cout << "Name ? ";
-    cin.ignore();
-    getline(cin, input_string);
-    set_input_name(input_string);
+    cin >> input_name;
+
 
     cout << "Student ID (10 digits)? ";
-    cin.ignore();
-    getline(cin, input_string);
-    set_input_student_id(input_string);
+    cin >> input_studentID;
+    try {  // 입력한 문자열이 10자리 
+        if (input_studentID.size() == 10) //10글자인가?
+        {
+            cout << '?';
+            for (int i = 0; i < 10; i++) //
+            {
+                if (isdigit(input_studentID[i])) continue;
+                else throw input_studentID;
+            }
+        }
+        else throw input_studentID; //아니라면 예외처리
+    }
+    catch (string execption)
+    {
+        cout << "Error : Invaild input , input 10 digits numbers\n";
+        return false;
+    }
+
 
     cout << "Birth Year (4 digits)? ";
-    cin.ignore();
-    getline(cin, input_string);
-    set_input_birth_year(input_string);
+    cin >> input_birthYear;
+    try {  // 입력한 문자열이 10자리 
+        if (input_birthYear.size() == 4)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (isdigit(input_birthYear[i])) continue;
+                else throw input_birthYear;
+            }
+        }
+        else throw input_birthYear;
+    }
+    catch (string execption)
+    {
+        cout << "Error : Invaild input , input 4 digits numbers\n";
+        return false;
+    }
+
+
 
     cout << "Department? ";
-    cin.ignore();
-    getline(cin, input_string);
-    set_input_dept(input_string);
+    cin >> input_dept;
+
 
     cout << "Tel? ";
-    cin.ignore();
-    getline(cin, input_string);
-    set_input_tel(input_string);
+    cin >> input_tel;
+    try {  // 입력한 문자열이 10자리 
+        if (input_tel.size() <= 11)
+        {
+            for (int i = 0; i < input_tel.size(); i++)
+            {
+                if (isdigit(input_tel[i])) continue;
+                else throw input_tel;
+            }
+        }
+        else throw input_tel;
+    }
+    catch (string execption)
+    {
+        cout << "Error : Invaild input , input correct tel numbers\n";
+        return false;
+    }
+}
+//void Insertion::Input() {
+//    //입력 받은 정보를 저장. 그리고 의무 아닌거 없을때 ~ 처리, 
+//    char tmp; //_getch() 입력 받는 용 
+//    string input_string; //_getch() 이후 입력받는 용
+//
+//    cout << "Name ? ";
+//    cin.ignore();
+//    getline(cin, input_string);
+//    set_input_name(input_string);
+//
+//    cout << "Student ID (10 digits)? ";
+//    cin.ignore();
+//    getline(cin, input_string);
+//    set_input_student_id(input_string);
+//
+//    cout << "Birth Year (4 digits)? ";
+//    cin.ignore();
+//    getline(cin, input_string);
+//    set_input_birth_year(input_string);
+//
+//    cout << "Department? ";
+//    cin.ignore();
+//    getline(cin, input_string);
+//    set_input_dept(input_string);
+//
+//    cout << "Tel? ";
+//    cin.ignore();
+//    getline(cin, input_string);
+//    set_input_tel(input_string);
 
     /*
 
@@ -89,7 +162,7 @@ void Insertion::Input() {
         cin >> input_tel;
     */
 
-}
+//}
 
 bool Insertion::CheckError() {
 

@@ -55,7 +55,7 @@ public:
     bool set_input_dept(string s);
     bool set_input_birth_year(string s);
     bool set_input_tel(string s);
-    void Input(); //정보 입력 받기
+    bool Input(); //정보 입력 받기
     bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입
     void GoToMain(); //메인 화면으로 돌아가는 함수(개발예정)
