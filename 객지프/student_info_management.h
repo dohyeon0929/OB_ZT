@@ -81,16 +81,17 @@ public:
 class Sorting {
 private:
     int sort_mode_; //정렬 모드 변수 
-    vector<Student> student_list_;
+    StudentList student_list_; //MainMenu의 학생 정보 리스트를 받아올 멤버 변수 
+    vector<Student> tmp_vector_; //student_list_에서 vector부분을 저장할 멤버 변수 
 public:
-    Sorting(vector<Student>& student_list_);
-    int get_mode() { return sort_mode_; } //소트 모드 접근자
-    bool set_mode(string sort_mode_);//소트 모드 변경자 
-    void Display(); //sort 선택 시 첫 화면 
-    bool Input(); //sort 모드 입력 받기 
+    Sorting(StudentList student_list);
+    int get_sort_mode_() { return sort_mode_; } //소트 모드 접근자
+    bool set_sort_mode_(string sort_mode_);//소트 모드 변경자 
+    void SortingDisplay(); //sort 선택 시 첫 화면 
+    bool SortingInput(); //sort 모드 입력 받기 
     string FilterNull(string s); //Print할 때 필요한 함수 
     void Sort(); //sort 프로세스 
-    void Print();//정렬 결과 출력 (최종 제출할 때에는 없어도 됨)
+    void SortingPrint();//정렬 결과 출력
 };
 
 class MainMenu
@@ -101,7 +102,7 @@ public:
     void Start();
     void set_mode(string mode_); //mode_ 변경자 
     void Insert(StudentList student_list);
-    void Sort(vector<Student>student_list);
+    void Sort(StudentList student_list);
     void Search(vector<Student>student_list);
     void Exit();
 };

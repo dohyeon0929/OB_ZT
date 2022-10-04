@@ -32,7 +32,9 @@ bool Insertion::Input() {
     string input_string; //_getch() 이후 입력받는 용
 
     cout << "Name ? ";
-    cin >> input_name;
+    cin.ignore();
+    getline(cin, input_string);
+    set_input_name(input_string);
 
 
     cout << "Student ID (10 digits)? ";
@@ -40,12 +42,12 @@ bool Insertion::Input() {
     try {  // 입력한 문자열이 10자리 
         if (input_studentID.size() == 10) //10글자인가?
         {
-            cout << '?';
             for (int i = 0; i < 10; i++) //
             {
                 if (isdigit(input_studentID[i])) continue;
                 else throw input_studentID;
             }
+
         }
         else throw input_studentID; //아니라면 예외처리
     }
@@ -126,8 +128,8 @@ bool Insertion::Input() {
 //    set_input_dept(input_string);
 //
 //    cout << "Tel? ";
-//    cin.ignore();
-//    getline(cin, input_string);
+    /*cin.ignore();
+    getline(cin, input_string);*/
 //    set_input_tel(input_string);
 
     /*

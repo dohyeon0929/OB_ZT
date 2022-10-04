@@ -39,7 +39,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 			Search(list.get_student_list());
 			break;
 		case 3:
-			Sort(list.get_student_list());
+			Sort(list);
 			break;
 		case 4:
 			Exit();
@@ -58,18 +58,18 @@ void MainMenu::Insert(StudentList student_list)
 	s.InsertIn();
 }
 
-void MainMenu::Sort(vector<Student>student_list)
+void MainMenu::Sort(StudentList student_list)
 {
 	Sorting s(student_list);
 	while (true) {
-		s.Display();
-		if (s.Input()) {
-			if (s.get_mode() == 5) { // 5. back
+		s.SortingDisplay();
+		if (s.SortingInput()) {
+			if (s.get_sort_mode_() == 5) { // 5. back
 				break;
 			}
 			else {
 				s.Sort();
-				s.Print();
+				s.SortingPrint();
 				break;
 			}
 		}
