@@ -32,9 +32,7 @@ bool Insertion::Input() {
     string input_string; //_getch() 이후 입력받는 용
 
     cout << "Name ? ";
-    cin.ignore();
-    getline(cin, input_string);
-    set_input_name(input_string);
+    cin >> input_name;
 
 
     cout << "Student ID (10 digits)? ";
@@ -47,7 +45,6 @@ bool Insertion::Input() {
                 if (isdigit(input_studentID[i])) continue;
                 else throw input_studentID;
             }
-
         }
         else throw input_studentID; //아니라면 예외처리
     }
@@ -56,6 +53,8 @@ bool Insertion::Input() {
         cout << "Error : Invaild input , input 10 digits numbers\n";
         return false;
     }
+
+
 
 
     cout << "Birth Year (4 digits)? ";
@@ -128,12 +127,11 @@ bool Insertion::Input() {
 //    set_input_dept(input_string);
 //
 //    cout << "Tel? ";
-    /*cin.ignore();
-    getline(cin, input_string);*/
+//    cin.ignore();
+//    getline(cin, input_string);
 //    set_input_tel(input_string);
 
     /*
-
     cin.ignore();
     tmp = _getch();
     if (tmp == 32)//만약 스페이스 바를 눌렀을 때 변수에 '~' 저장. 엔터 아스키코드 보류(수정예정)
@@ -146,7 +144,6 @@ bool Insertion::Input() {
         input_birthYear += tmp;
         input_birthYear += input_string;
     }
-
     cout << "Department? ";
     if (_getch() == 32)//엔터 아스키코드 보류
     {
@@ -154,7 +151,6 @@ bool Insertion::Input() {
     }
     else
         cin >> input_dept;
-
     cout << "Tel? ";
     if (_getch() == 32)//엔터 아스키코드 보류
     {
@@ -164,17 +160,18 @@ bool Insertion::Input() {
         cin >> input_tel;
     */
 
-//}
+    //}
 
 bool Insertion::CheckError() {
 
     for (int i = 0; i < student_list_.get_student_list().size(); i++) {
         if (input_studentID == student_list_.get_student_list()[i].get_student_id()) //만약 중복된 ID일 경우
         {
-            cout << "Error : Already inserted";
+
             return 0; //중복된 ID는 0을 반환
             break;
         }
+
     }
 
     return 1; //중복 없는 ID는 1을 반환
@@ -186,6 +183,10 @@ void Insertion::InsertIn()
     {
         // cout << "hey"; // 확인용
         student_list_.StudentAdd(input_name, input_studentID, input_dept, input_birthYear, input_tel, this->student_list_.get_student_list());
+    }
+    else //중복된 ID이므로 
+    {
+        cout << "Error : Already inserted\n";
     }
 }
 
