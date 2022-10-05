@@ -1,4 +1,5 @@
 #include "student_info_management.h"
+
 bool Insertion::set_input_name(string s) {
     input_name = s;
     return true;
@@ -29,17 +30,15 @@ Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기
 bool Insertion::Input() {
     //입력 받은 정보를 저장. 그리고 의무 아닌거 없을때 ~ 처리, 
     char tmp; //_getch() 입력 받는 용 
-     //_getch() 이후 입력받는 용
-    string input_string;
+    //string input_string;//_getch() 이후 입력받는 용
+    cin.ignore();
   
     /* Name */
     while (1) {
-
         //cout << "in while";
+        string input_string;
         cout << "Name ? ";
-        cin.ignore();
         getline(cin, input_string);// 제한자는 엔터로 자동 설정
-
         if (input_string != "") { // 입력이 있는 경우에
             //cout << "normal input"; // 확인용
             if (input_string.size() > 15) { // 15글자 제한
@@ -59,33 +58,33 @@ bool Insertion::Input() {
     }
 
     /* StudentID */
-    
+    bool token = false; //추후 이중 반복문 나가기 위한 변수 선언 
     while (1) {
         //cout << "in while";
+        if (token)break;
+        string input_string;
         cout << "Student ID (10 digits)? ";
-        cin.ignore();
+        //cin.ignore();
         getline(cin, input_string);// 제한자는 엔터로 자동 설정
+        //cin.ignore();
+        //cout << input_string;
 
         if (input_string != "") { // 입력이 있는 경우에
-            cout << "normal input"; // 확인용
+            //cout << "normal input"; // 확인용
             try {  // 입력한 문자열이 10자리 
-                if (input_studentID.size() == 10) //10글자인가?
+                if (input_string.size() == 10) //10글자인가?
                 {
                     for (int i = 0; i < 10; i++) 
                     {
-                        if (isdigit(input_studentID[i])) { //10글자 숫자가 맞으면
+                        if (isdigit(input_string[i])) { //10글자 숫자가 맞으면
                             if (i == 9) {
-                                cout << "jjjjj";
                                 set_input_student_id(input_string); // input_name은 input_string
-                                input_string = ""; // 학번도 넣어야 하니까 초기화
+                                token = true; //이중 반복문 나가기 
                                 break;
+                                //input_string = ""; // 학번도 넣어야 하니까 초기화
                             }
-                            else 
-                                continue;
                         }
-                        else throw input_studentID; //10글자인데 숫자가 아니면 입력하라고 하기
-
-                        
+                        else throw input_string; //10글자인데 숫자가 아니면 입력하라고 하기
                     }
                 }
                 else throw input_studentID; // 당연히 10글자가 아니어도 입력하라고 하기
