@@ -42,7 +42,7 @@ bool Insertion::Input() {
         if (input_string != "") { // 입력이 있는 경우에
             //cout << "normal input"; // 확인용
             if (input_string.size() > 15) { // 15글자 제한
-                cout << "Name is up to 15 chars.\n"; // 오류메세지 띄우고
+                cout << "Error : Invaild input , Name is up to 15 chars.\n"; // 오류메세지 띄우고
                 continue; // 다시 입력하도록 유도
             }
             else { // 입력도 있고 글자수제한도 잘 지킨 경우에
@@ -52,7 +52,7 @@ bool Insertion::Input() {
             }
         }
         else { // 입력 없이 엔터치고 넘어간 경우
-            cout << "You should input your name !\n";
+            cout << "Error : Name can't be blank.\n";
             continue;
         }
     }
@@ -88,12 +88,12 @@ bool Insertion::Input() {
             }
             catch (string exception)
             {
-                cout << "Error : Invaild input , input 10 digits numbers\n";
+                cout << "Error : Invaild input , ID should be 10 digit number.\n";
                 continue;
             }
         }
         else { // 입력 없이 엔터치고 넘어간 경우
-            cout << "You should input your StudentID !\n";
+            cout << "Error : StudentID can't be blank.\n";
             continue;
         }
     }
@@ -108,7 +108,7 @@ bool Insertion::Input() {
 
         if (input_birthyear_string != "") { // 입력이 있는 경우에
             if (input_birthyear_string.size() != 4) { // 정확히 4글자가 아닌 경우
-                cout << "birth year is 4 digits.\n"; // 오류메세지 띄우기
+                cout << "Error : Invaild input , Birth year should be 4 digit number.\n"; // 오류메세지 띄우기
             }
             else { // 입력도 있고 글자수도 4글자인 경우에
                 for (int i = 0; i < 4; i++)
@@ -121,7 +121,7 @@ bool Insertion::Input() {
                         }
                     }
                     else { //숫자 4개가 아니라 다른 것이 섞이면
-                        cout << "birth year is 4 digits.\n";
+                        cout << "Error : Invaild input , Birth year should be 4 digit number.\n";
                         break;
                     }
                 }
@@ -157,7 +157,7 @@ bool Insertion::Input() {
 
         if (input_tel_string != "") { // 입력이 있는 경우에
             if (input_tel_string.size() > 12) { // 12글자까지임
-                cout << "tel is up to 12 digits.\n"; // 오류메세지 띄우고
+                cout << "Error : Invaild input , Tell is up to 12 digit number.\n"; // 오류메세지 띄우고
             }
             else { // 입력도 있고 12자와 같거나 작은 올바른 입력의 경우에
                 for (int i = 0; i < input_tel_string.size(); i++)
@@ -170,7 +170,7 @@ bool Insertion::Input() {
                         }
                     }
                     else { //숫자가 아닌 다른 것이 섞이면
-                        cout << "Tel is up to 12 digits.\n"; //숫자임을 오류출력
+                        cout << "Error : Invaild input , Tell is up to 12 digit number.\n"; //숫자임을 오류출력
                         break;
                     }
                 }
