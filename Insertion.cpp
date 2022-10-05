@@ -1,25 +1,25 @@
 #include "student_info_management.h"
 bool Insertion::set_input_name(string s) {
-    input_name = s;
+    input_name_ = s;
     return true;
 }
 bool Insertion::set_input_student_id(string s) {
-    input_studentID = s;
+    input_studentID_ = s;
     return true;
 
 }
 bool Insertion::set_input_dept(string s) {
-    input_dept = s;
+    input_dept_ = s;
     return true;
 
 }
 bool Insertion::set_input_birth_year(string s) {
-    input_birthYear = s;
+    input_birthYear_ = s;
     return true;
 
 }
 bool Insertion::set_input_tel(string s) {
-    input_tel = s;
+    input_tel_ = s;
     return true;
 
 }
@@ -69,11 +69,11 @@ bool Insertion::Input() {
         if (input_string != "") { // 입력이 있는 경우에
             cout << "normal input"; // 확인용
             try {  // 입력한 문자열이 10자리 
-                if (input_studentID.size() == 10) //10글자인가?
+                if (input_studentID_.size() == 10) //10글자인가?
                 {
                     for (int i = 0; i < 10; i++) 
                     {
-                        if (isdigit(input_studentID[i])) { //10글자 숫자가 맞으면
+                        if (isdigit(input_studentID_[i])) { //10글자 숫자가 맞으면
                             if (i == 9) {
                                 cout << "jjjjj";
                                 set_input_student_id(input_string); // input_name은 input_string
@@ -83,12 +83,12 @@ bool Insertion::Input() {
                             else 
                                 continue;
                         }
-                        else throw input_studentID; //10글자인데 숫자가 아니면 입력하라고 하기
+                        else throw input_studentID_; //10글자인데 숫자가 아니면 입력하라고 하기
 
                         
                     }
                 }
-                else throw input_studentID; // 당연히 10글자가 아니어도 입력하라고 하기
+                else throw input_studentID_; // 당연히 10글자가 아니어도 입력하라고 하기
             }
             catch (string exception)
             {
@@ -105,44 +105,44 @@ bool Insertion::Input() {
     
 
     cout << "Birth Year (4 digits)? ";
-    cin >> input_birthYear;
-    try {  // 입력한 문자열이 10자리 
-        if (input_birthYear.size() == 4)
+    cin >> input_birthYear_;
+    try {  // 입력한 문자열이 4자리 
+        if (input_birthYear_.size() == 4)
         {
             for (int i = 0; i < 4; i++)
             {
-                if (isdigit(input_birthYear[i])) continue;
-                else throw input_birthYear;
+                if (isdigit(input_birthYear_[i])) continue; //입력받은 문자열이 숫자인지 확인
+                else throw input_birthYear_;
             }
         }
-        else throw input_birthYear;
+        else throw input_birthYear_;
     }
     catch (string execption)
     {
-        cout << "Error : Invaild input , input 4 digits numbers\n";
+        cout << "Error : Invaild input , input 4 digits numbers\n"; //Birth Year가 4자리가 아닐경우, 숫자가 아닐경우 에러처리
         return false;
     }
 
     cout << "Department? ";
-    cin >> input_dept;
+    cin >> input_dept_;
 
 
     cout << "Tel? ";
-    cin >> input_tel;
+    cin >> input_tel_;
     try {  // 입력한 문자열이 10자리 
-        if (input_tel.size() <= 11)
+        if (input_tel_.size() <= 11)
         {
-            for (int i = 0; i < input_tel.size(); i++)
+            for (int i = 0; i < input_tel_.size(); i++)
             {
-                if (isdigit(input_tel[i])) continue;
-                else throw input_tel;
+                if (isdigit(input_tel_[i])) continue;
+                else throw input_tel_;
             }
         }
-        else throw input_tel;
+        else throw input_tel_;
     }
     catch (string execption)
     {
-        cout << "Error : Invaild input , input correct tel numbers\n";
+        cout << "Error : Invaild input , input correct tel numbers\n"; //전화번호가 10자리를 넘었을 경우 에러 처리
         return false;
     }
 }
@@ -150,7 +150,7 @@ bool Insertion::Input() {
 bool Insertion::CheckError() {
 
     for (int i = 0; i < student_list_.get_student_list().size(); i++) {
-        if (input_studentID == student_list_.get_student_list()[i].get_student_id()) //만약 중복된 ID일 경우
+        if (input_studentID_ == student_list_.get_student_list()[i].get_student_id()) //만약 중복된 ID일 경우
         {
 
             return 0; //중복된 ID는 0을 반환
@@ -167,7 +167,7 @@ void Insertion::InsertIn()
     if (CheckError() == 1) //중복된 ID가 아니므로 삽입
     {
         // cout << "hey"; // 확인용
-        student_list_.StudentAdd(input_name, input_studentID, input_dept, input_birthYear, input_tel, this->student_list_.get_student_list());
+        student_list_.StudentAdd(input_name_, input_studentID_, input_dept_, input_birthYear_, input_tel_, this->student_list_.get_student_list()); //Student list에 학생 정보를 추가하고, 파일을 저장
     }
     else //중복된 ID이므로 
     {
