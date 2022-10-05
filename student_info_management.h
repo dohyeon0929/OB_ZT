@@ -42,11 +42,11 @@ public:
 
 class Insertion {
 private: // 입력받는 항목을 private에 저장
-    string input_name;
-    string input_studentID;
-    string input_dept;
-    string input_birthYear;
-    string input_tel;
+    string input_name_;
+    string input_studentID_;
+    string input_dept_;
+    string input_birthYear_;
+    string input_tel_;
     StudentList student_list_; // = student_list
 public:
     Insertion(StudentList& student_list_); // 생성자                 

@@ -1,27 +1,27 @@
 #include "student_info_management.h"
 
 bool Insertion::set_input_name(string s) {
-    input_name = s;
+    input_name_ = s;
     return true;
 }
 bool Insertion::set_input_student_id(string s) {
-    input_studentID = s;
+    input_studentID_ = s;
     return true;
 
 }
 
 bool Insertion::set_input_dept(string s) {
-    input_dept = s;
+    input_dept_ = s;
     return true;
 
 }
 bool Insertion::set_input_birth_year(string s) {
-    input_birthYear = s;
+    input_birthYear_ = s;
     return true;
 
 }
 bool Insertion::set_input_tel(string s) {
-    input_tel = s;
+    input_tel_ = s;
     return true;
 
 }
@@ -84,7 +84,7 @@ bool Insertion::Input() {
                         else throw input_string; //10글자인데 숫자가 아니면 입력하라고 하기
                     }
                 }
-                else throw input_studentID; // 당연히 10글자가 아니어도 입력하라고 하기
+                else throw input_studentID_; // 당연히 10글자가 아니어도 입력하라고 하기
             }
             catch (string exception)
             {
@@ -188,7 +188,7 @@ bool Insertion::Input() {
 bool Insertion::CheckError() {
 
     for (int i = 0; i < student_list_.get_student_list().size(); i++) {
-        if (input_studentID == student_list_.get_student_list()[i].get_student_id()) //만약 중복된 ID일 경우
+        if (input_studentID_ == student_list_.get_student_list()[i].get_student_id()) //만약 중복된 ID일 경우
         {
 
             return 0; //중복된 ID는 0을 반환
@@ -203,7 +203,7 @@ void Insertion::InsertIn()
     if (CheckError() == 1) //중복된 ID가 아니므로 삽입
     {
         // cout << "hey"; // 확인용
-        student_list_.StudentAdd(input_name, input_studentID, input_dept, input_birthYear, input_tel, this->student_list_.get_student_list());
+        student_list_.StudentAdd(input_name_, input_studentID_, input_dept_, input_birthYear_, input_tel_, this->student_list_.get_student_list());
     }
     else //중복된 ID이므로 
     {
