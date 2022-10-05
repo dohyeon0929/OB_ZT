@@ -29,33 +29,80 @@ Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기
 bool Insertion::Input() {
     //입력 받은 정보를 저장. 그리고 의무 아닌거 없을때 ~ 처리, 
     char tmp; //_getch() 입력 받는 용 
-    string input_string; //_getch() 이후 입력받는 용
+     //_getch() 이후 입력받는 용
+    string input_string;
+  
+    /* Name */
+    while (1) {
 
-    cout << "Name ? ";
-    cin >> input_name;
+        //cout << "in while";
+        cout << "Name ? ";
+        cin.ignore();
+        getline(cin, input_string);// 제한자는 엔터로 자동 설정
 
-
-    cout << "Student ID (10 digits)? ";
-    cin >> input_studentID;
-    try {  // 입력한 문자열이 10자리 
-        if (input_studentID.size() == 10) //10글자인가?
-        {
-            for (int i = 0; i < 10; i++) //
-            {
-                if (isdigit(input_studentID[i])) continue;
-                else throw input_studentID;
+        if (input_string != "") { // 입력이 있는 경우에
+            //cout << "normal input"; // 확인용
+            if (input_string.size() > 15) { // 15글자 제한
+                cout << "Name is up to 15 chars.\n"; // 오류메세지 띄우고
+                continue; // 다시 입력하도록 유도
+            }
+            else { // 입력도 있고 글자수제한도 잘 지킨 경우에
+                set_input_name(input_string); // input_name은 input_string
+                input_string = ""; // 학번도 넣어야 하니까 초기화
+                break;
             }
         }
-        else throw input_studentID; //아니라면 예외처리
-    }
-    catch (string execption)
-    {
-        cout << "Error : Invaild input , input 10 digits numbers\n";
-        return false;
+        else { // 입력 없이 엔터치고 넘어간 경우
+            cout << "You should input your name !\n";
+            continue;
+        }
     }
 
+    /* StudentID */
+    
+    while (1) {
+        //cout << "in while";
+        cout << "Student ID (10 digits)? ";
+        cin.ignore();
+        getline(cin, input_string);// 제한자는 엔터로 자동 설정
 
+        if (input_string != "") { // 입력이 있는 경우에
+            cout << "normal input"; // 확인용
+            try {  // 입력한 문자열이 10자리 
+                if (input_studentID.size() == 10) //10글자인가?
+                {
+                    for (int i = 0; i < 10; i++) 
+                    {
+                        if (isdigit(input_studentID[i])) { //10글자 숫자가 맞으면
+                            if (i == 9) {
+                                cout << "jjjjj";
+                                set_input_student_id(input_string); // input_name은 input_string
+                                input_string = ""; // 학번도 넣어야 하니까 초기화
+                                break;
+                            }
+                            else 
+                                continue;
+                        }
+                        else throw input_studentID; //10글자인데 숫자가 아니면 입력하라고 하기
 
+                        
+                    }
+                }
+                else throw input_studentID; // 당연히 10글자가 아니어도 입력하라고 하기
+            }
+            catch (string exception)
+            {
+                cout << "Error : Invaild input , input 10 digits numbers\n";
+                continue;
+            }
+        }
+        else { // 입력 없이 엔터치고 넘어간 경우
+            cout << "You should input your StudentID !\n";
+            continue;
+        }
+    }
+    
+    
 
     cout << "Birth Year (4 digits)? ";
     cin >> input_birthYear;
@@ -75,8 +122,6 @@ bool Insertion::Input() {
         cout << "Error : Invaild input , input 4 digits numbers\n";
         return false;
     }
-
-
 
     cout << "Department? ";
     cin >> input_dept;
@@ -101,66 +146,6 @@ bool Insertion::Input() {
         return false;
     }
 }
-//void Insertion::Input() {
-//    //입력 받은 정보를 저장. 그리고 의무 아닌거 없을때 ~ 처리, 
-//    char tmp; //_getch() 입력 받는 용 
-//    string input_string; //_getch() 이후 입력받는 용
-//
-//    cout << "Name ? ";
-//    cin.ignore();
-//    getline(cin, input_string);
-//    set_input_name(input_string);
-//
-//    cout << "Student ID (10 digits)? ";
-//    cin.ignore();
-//    getline(cin, input_string);
-//    set_input_student_id(input_string);
-//
-//    cout << "Birth Year (4 digits)? ";
-//    cin.ignore();
-//    getline(cin, input_string);
-//    set_input_birth_year(input_string);
-//
-//    cout << "Department? ";
-//    cin.ignore();
-//    getline(cin, input_string);
-//    set_input_dept(input_string);
-//
-//    cout << "Tel? ";
-//    cin.ignore();
-//    getline(cin, input_string);
-//    set_input_tel(input_string);
-
-    /*
-    cin.ignore();
-    tmp = _getch();
-    if (tmp == 32)//만약 스페이스 바를 눌렀을 때 변수에 '~' 저장. 엔터 아스키코드 보류(수정예정)
-    {
-        input_birthYear = "~";
-    }
-    else {
-        cin >> input_string;
-        input_birthYear = "";
-        input_birthYear += tmp;
-        input_birthYear += input_string;
-    }
-    cout << "Department? ";
-    if (_getch() == 32)//엔터 아스키코드 보류
-    {
-        input_dept = '~';
-    }
-    else
-        cin >> input_dept;
-    cout << "Tel? ";
-    if (_getch() == 32)//엔터 아스키코드 보류
-    {
-        input_tel = '~';
-    }
-    else
-        cin >> input_tel;
-    */
-
-    //}
 
 bool Insertion::CheckError() {
 
