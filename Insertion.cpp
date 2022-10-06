@@ -40,7 +40,7 @@ vector<string> InsertionSplit(string str, char delimeter) {
 bool Insertion::Input() {
     //입력 받은 정보를 저장. 그리고 의무 아닌거 없을때 ~ 처리, 
     char tmp; //_getch() 입력 받는 용 
-    cin.ignore();
+    //cin.ignore();
 
     /* Name */
     while (1) {

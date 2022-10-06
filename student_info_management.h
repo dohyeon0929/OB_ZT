@@ -32,9 +32,9 @@ private:
     vector<Student>student_info_list_; //student 객체를 담을 리스트(vector)
 public:
     StudentList(); // 기본 생성자	
-    vector<string> Split(string str, char Delimiter); //문자열 파싱
-    void StudentAdd(string name, string studentID,
-        string dept, string birthYear, string tel, vector<Student>student_list); //학생 추가
+    vector<string> Split(string str, char delimiter); //문자열 파싱
+    void StudentAdd(string name, string student_id,
+        string dept, string birth_year, string tel, vector<Student>student_list); //학생 추가
     void SaveList(vector<Student>student_list); // 파일에 저장
     vector<Student>get_student_list() { return student_info_list_; };// student_list 
     //bool DefaultCompare(Student a, Student b) { return a.get_name() > b.get_name(); };; // 기본 sorting 기능
@@ -63,11 +63,11 @@ public:
 class Searching {
 private:
     int search_mode_; // 서치 모드 변수
-    vector<Student> student_list_;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
+    StudentList student_list_;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
     vector<Student> student_search_list_; // 조건에 맞는 student를 담을 새로운 list를 뜻함
     vector<Student> tmp_vector_;
 public:
-    Searching(vector<Student>& _student_list); //생성자
+    Searching(StudentList _student_list); //생성자
     void SearchingDisplay(); //서치 선택시 첫 화면
     int get_search_mode_() { return search_mode_; }; //서치 모드 접근자
     bool set_search_mode_(string search_mode_); //서치 모드 변경자 
@@ -102,7 +102,7 @@ public:
     void set_mode(string mode_); //mode_ 변경자 
     void Insert(StudentList student_list);
     void Sort(StudentList student_list);
-    void Search(vector<Student>student_list);
+    void Search(StudentList student_list);
     void Exit();
 };
 #endif

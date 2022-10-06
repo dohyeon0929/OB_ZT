@@ -46,7 +46,7 @@ bool Searching::set_search_mode_(string search_mode_) {   //searchmode 설정하기
         else throw search_mode_;
     }
     catch (string exception) {
-        cout << "Error : Invalid input\n";
+        cout << "Error :" << "'" << exception << "'" << "is Invalid input\n";
         this->search_mode_ = 0;
         return false;
     }
@@ -54,13 +54,14 @@ bool Searching::set_search_mode_(string search_mode_) {   //searchmode 설정하기
 
 
 bool Searching::SearchingInput() { //  서치 모드 입력 받기 
-	string _search_mode; 
-	cin >> _search_mode;  //_search_mode로 입력을 받습니다. 1은 search by name, 2은 search by Student Id, 3은 search by admission year, 4은 search by department name, 5은 list all, 6은 go back입니다.
-    if (set_search_mode_(_search_mode)) return true;  //set_search_mode: 1~6을 제외한 다른 입력값의 경우 예외처리 
+	string search_mode; 
+    getline(cin, search_mode);  //_search_mode로 입력을 받습니다. 1은 search by name, 2은 search by Student Id, 3은 search by admission year, 4은 search by department name, 5은 list all, 6은 go back입니다.
+    if (set_search_mode_(search_mode)) return true;  //set_search_mode: 1~6을 제외한 다른 입력값의 경우 예외처리 
     else return false;  
 }
-Searching::Searching(vector<Student>& student_list) { //student_list 받아 오기 
+Searching::Searching(StudentList student_list) { //student_list 받아 오기 
     this->student_list_ = student_list;
+    this->tmp_vector_ = student_list.get_student_list();
 }
 
 void Searching::Search() {
@@ -75,9 +76,9 @@ void Searching::Search() {
             std::cout << "name keyword ? ";    //name keyword? 출력하였음
             cin.ignore();    //사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지 
             getline(cin, search_keyword);  //getline 함수로 한줄 입력받기
-            for (int i = 0; i < student_list_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
-                if (student_list_[i].get_name() == search_keyword) {
-                    student_search_list_.push_back(student_list_[i]);  
+            for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
+                if (tmp_vector_[i].get_name() == search_keyword) {
+                    student_search_list_.push_back(tmp_vector_[i]);  
                 }
             }
             break;
@@ -85,9 +86,9 @@ void Searching::Search() {
             std::cout << "student id keyword ? ";  //student id keyword? 출력하였음
             cin.ignore();  //사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지 
             getline(cin, search_keyword);  //getline 함수로 한줄 입력받기
-            for (int i = 0; i < student_list_.size(); i++) {  //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
-                if (student_list_[i].get_student_id() == search_keyword ) {
-                    student_search_list_.push_back(student_list_[i]);
+            for (int i = 0; i < tmp_vector_.size(); i++) {  //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
+                if (tmp_vector_[i].get_student_id() == search_keyword ) {
+                    student_search_list_.push_back(tmp_vector_[i]);
                 }
             }
             break;
@@ -95,9 +96,9 @@ void Searching::Search() {
             std::cout << "admission year keyword ? ";  //admission year keyword ? 출력하였음
             cin.ignore(); // 사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지
             getline(cin, search_keyword); //getline 함수로 한줄 입력받기
-            for (int i = 0; i < student_list_.size(); i++) {  //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음. 
-                if (student_list_[i].get_student_id().substr(0,4) == search_keyword ) {
-                    student_search_list_.push_back(student_list_[i]);
+            for (int i = 0; i < tmp_vector_.size(); i++) {  //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음. 
+                if (tmp_vector_[i].get_student_id().substr(0,4) == search_keyword ) {
+                    student_search_list_.push_back(tmp_vector_[i]);
                 }
             }
             break;
@@ -116,15 +117,15 @@ void Searching::Search() {
             }
                 input_dept_string_out.pop_back(); // 맨 끝에 있는 띄어쓰기 없애기
                 search_keyword = input_dept_string_out;
-            for (int i = 0; i < student_list_.size ();i++) {   //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
-                if (student_list_[i].get_dept() == search_keyword ) {
-                    student_search_list_.push_back(student_list_[i]);
+            for (int i = 0; i < tmp_vector_.size ();i++) {   //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
+                if (tmp_vector_[i].get_dept() == search_keyword ) {
+                    student_search_list_.push_back(tmp_vector_[i]);
                 }
             }
             break;
         case 5: //list all
-            for (int i = 0; i < student_list_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로  담음.
-                student_search_list_.push_back(student_list_[i]);
+            for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로  담음.
+                student_search_list_.push_back(tmp_vector_[i]);
             }
             sort(student_search_list_.begin(), student_search_list_.end(), CompareName2);
             break;
@@ -165,6 +166,7 @@ void Searching::SearchingPrint() { //정렬 결과 출력하기
         cout << '+';
     }
     cout << '\n';
+    vector<Student> null_students;
     for (int i = 0; i < student_search_list_.size(); i++) {  //
         cout << '|';
         cout << left << setw(blank_space[0]) << FilterNull(student_search_list_[i].get_name()) << '|';
@@ -174,6 +176,7 @@ void Searching::SearchingPrint() { //정렬 결과 출력하기
         cout << left << setw(blank_space[4]) << FilterNull(student_search_list_[i].get_tel()) << '|';
         cout << '\n';
     }
+    
     cout << "+";
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < blank_space[i]; j++) {
