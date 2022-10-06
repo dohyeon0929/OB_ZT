@@ -24,7 +24,7 @@ bool Insertion::set_input_tel(string s) {
 Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기 
     this->student_list_ = student_list_;
 }
-vector<string> split(string str, char delimeter) {
+vector<string> InsertionSplit(string str, char delimeter) {
     vector<string> answer;
     stringstream ss(str);
     string temp;
@@ -137,7 +137,7 @@ bool Insertion::Input() {
             }
         }
         else { // 엔터치고 패스하고자 하는 경우 (비필수 입력이니까)
-            set_input_birth_year("!");
+            set_input_birth_year("~");
             break;
         }
     }
@@ -150,7 +150,7 @@ bool Insertion::Input() {
     getline(cin, input_dept_string_in);// 제한자는 엔터로 자동 설정
 
     if (input_dept_string_in != "") { // 입력이 있는 경우에       
-        vector<string> temp_string = split(input_dept_string_in, ' '); // 공백 기준으로 학과이름 자르기
+        vector<string> temp_string = InsertionSplit(input_dept_string_in, ' '); // 공백 기준으로 학과이름 자르기
         for (int i = 0; i < temp_string.size(); i++) { // 잘라진 어절의 첫글자 대문자로 바꾸기
             string temp_vector_string = temp_string[i];
             temp_vector_string[0] = toupper(temp_vector_string[0]);
@@ -161,7 +161,7 @@ bool Insertion::Input() {
         set_input_dept(input_dept_string_out); // 입력받은 것으로 넣어주기      
     }
     else { // 엔터치고 패스하고자 하는 경우 (비필수 입력이니까)
-        set_input_dept("!");
+        set_input_dept("~");
     }
 
 
@@ -195,7 +195,7 @@ bool Insertion::Input() {
             }
         }
         else { // 엔터치고 패스하고자 하는 경우 (비필수 입력이니까)
-            set_input_tel("!");
+            set_input_tel("~");
             break;
         }
     }
