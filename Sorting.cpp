@@ -30,7 +30,7 @@ bool Sorting::set_sort_mode_(string sort_mode) { //sort_mode_ 변경자
         else throw sort_mode; //예외 발생 
     }
     catch (string exception) {//예외가 발생했을 때, 즉 잘못된 입력을 받았을 때 
-        cout << "Error : Invalid input\n";
+        cout << "Error :" << "'" << exception << "'" << " is Invalid input\n";
         this->sort_mode_ = 0;//MainMenu에서 다시 제대로 된 값을 입력받게끔 sort_mode_를 0으로 만들기 
         return false; //잘못된 입력이 들어왔음을 알리기 위해 false 반환
     }
@@ -42,8 +42,11 @@ void Sorting::SortingDisplay() { //정렬 선택 시 첫 화면 출력
 
 bool Sorting::SortingInput() { //정렬 모드 입력 받기. 예외처리 목적 
     string sort_mode; //사용자한테 입력 받을 string 선언 
+    /*
     cin >> sort_mode; //사용자한테 입력 받기 
     cin.ignore(); //사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지 
+    */
+    getline(cin, sort_mode);
     if (set_sort_mode_(sort_mode))return true; //만약 제대로 된 입력을 받았다면 true 반환
     else return false; //잘못된 입력을 받았다면 false 반환 
 }

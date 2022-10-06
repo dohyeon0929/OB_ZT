@@ -32,9 +32,9 @@ private:
     vector<Student>student_info_list_; //student 객체를 담을 리스트(vector)
 public:
     StudentList(); // 기본 생성자	
-    vector<string> Split(string str, char Delimiter); //문자열 파싱
-    void StudentAdd(string name, string studentID,
-        string dept, string birthYear, string tel, vector<Student>student_list); //학생 추가
+    vector<string> Split(string str, char delimiter); //문자열 파싱
+    void StudentAdd(string name, string student_id,
+        string dept, string birth_year, string tel, vector<Student>student_list); //학생 추가
     void SaveList(vector<Student>student_list); // 파일에 저장
     vector<Student>get_student_list() { return student_info_list_; };// student_list 
     //bool DefaultCompare(Student a, Student b) { return a.get_name() > b.get_name(); };; // 기본 sorting 기능

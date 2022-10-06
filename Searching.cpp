@@ -41,7 +41,7 @@ bool Searching::set_search_mode_(string search_mode_) {   //searchmode 설정하기
         else throw search_mode_;
     }
     catch (string exception) {
-        cout << "Error : Invalid input\n";
+        cout << "Error :" << "'" << exception << "'" << "is Invalid input\n";
         this->search_mode_ = 0;
         return false;
     }
@@ -50,7 +50,7 @@ bool Searching::set_search_mode_(string search_mode_) {   //searchmode 설정하기
 
 bool Searching::SearchingInput() { //  서치 모드 입력 받기 
 	string search_mode; 
-	cin >> search_mode;  //_search_mode로 입력을 받습니다. 1은 search by name, 2은 search by Student Id, 3은 search by admission year, 4은 search by department name, 5은 list all, 6은 go back입니다.
+    getline(cin, search_mode);  //_search_mode로 입력을 받습니다. 1은 search by name, 2은 search by Student Id, 3은 search by admission year, 4은 search by department name, 5은 list all, 6은 go back입니다.
     if (set_search_mode_(search_mode)) return true;  //set_search_mode: 1~6을 제외한 다른 입력값의 경우 예외처리 
     else return false;  
 }
