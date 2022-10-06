@@ -36,7 +36,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 			Insert(list);
 			break;
 		case 2:
-			Search(list.get_student_list());
+			Search(list);
 			break;
 		case 3:
 			Sort(list);
@@ -76,7 +76,7 @@ void MainMenu::Sort(StudentList student_list)
 	}
 }
 
-void MainMenu::Search(vector<Student>student_list)
+void MainMenu::Search(StudentList student_list)
 {
 	Searching s(student_list);
 	while (true) {
@@ -88,6 +88,7 @@ void MainMenu::Search(vector<Student>student_list)
 			else {
 				s.Search();
 				s.SearchingPrint();
+				break;
 			}
 		}
 	}

@@ -173,8 +173,3 @@ void Insertion::InsertIn()
         cout << "Error : Already inserted\n";
     }
 }
-
-
-void Insertion::GoToMain() {
-    //개발 예정
-}
