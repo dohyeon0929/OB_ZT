@@ -63,16 +63,17 @@ public:
 class Searching {
 private:
     int search_mode_; // 서치 모드 변수
-    vector<Student> student_list;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
-    vector<Student> student_search_list; // 조건에 맞는 student를 담을 새로운 list를 뜻함
+    StudentList student_list_;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
+    vector<Student> student_search_list_; // 조건에 맞는 student를 담을 새로운 list를 뜻함
+    vector<Student> tmp_vector_;
 public:
-    Searching(vector<Student>& _student_list); //생성자
-    void Display(); //서치 선택시 첫 화면
-    int get_mode() { return search_mode_; }; //서치 모드 접근자
-    bool set_mode(string search_mode_); //서치 모드 변경자 
-    bool Input();  // 서치모드 입력받기
+    Searching(StudentList& student_list); //생성자
+    void SearchingDisplay(); //서치 선택시 첫 화면
+    int get_search_mode_() { return search_mode_; }; //서치 모드 접근자
+    bool set_search_mode_(string search_mode_); //서치 모드 변경자 
+    bool SearchingInput();  // 서치모드 입력받기
     void Search(); //서치
-    void Print(); //실제로 출력
+    void SearchingPrint(); //searchingprint
     string FilterNull(string s); // Print할 때 필요한 함수
 };
 
@@ -101,7 +102,7 @@ public:
     void set_mode(string mode_); //mode_ 변경자 
     void Insert(StudentList student_list);
     void Sort(StudentList student_list);
-    void Search(vector<Student>student_list);
+    void Search(StudentList student_list);
     void Exit();
 };
 
