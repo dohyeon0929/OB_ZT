@@ -2,7 +2,7 @@
 
 // search 동작 순서 :display-> input ->search로 list 받아오기-> search(case에따라 조건에맞는student새로운벡터에담김,이름순정렬까지완료)-> print
 
-bool CompareName2(Student a, Student b) { //정렬 1순위 : 이름, 정렬 2순위 : 학번 
+bool SearchingCompareName(Student a, Student b) { //정렬 1순위 : 이름, 정렬 2순위 : 학번 
     if (a.get_name() != b.get_name()) return a.get_name() < b.get_name();
     else return a.get_student_id() < b.get_student_id();
 }
@@ -74,8 +74,11 @@ void Searching::Search() {
     switch (search_mode_) { //입력받은 기준에 따라 search 하기
         case 1: //search by name
             std::cout << "name keyword ? ";    //name keyword? 출력하였음
-            cin.ignore();    //사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지 
             getline(cin, search_keyword);  //getline 함수로 한줄 입력받기
+            if ('a' <= search_keyword[0] && search_keyword[0] <= 'z') {
+                search_keyword[0] -= 32;
+            }
+            cout << search_keyword << '\n';
             for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
                 if (tmp_vector_[i].get_name() == search_keyword) {
                     student_search_list_.push_back(tmp_vector_[i]);  
@@ -84,7 +87,6 @@ void Searching::Search() {
             break;
         case 2:  //search by student id
             std::cout << "student id keyword ? ";  //student id keyword? 출력하였음
-            cin.ignore();  //사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지 
             getline(cin, search_keyword);  //getline 함수로 한줄 입력받기
             for (int i = 0; i < tmp_vector_.size(); i++) {  //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
                 if (tmp_vector_[i].get_student_id() == search_keyword ) {
@@ -94,7 +96,6 @@ void Searching::Search() {
             break;
         case 3:  //search by admission year
             std::cout << "admission year keyword ? ";  //admission year keyword ? 출력하였음
-            cin.ignore(); // 사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지
             getline(cin, search_keyword); //getline 함수로 한줄 입력받기
             for (int i = 0; i < tmp_vector_.size(); i++) {  //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음. 
                 if (tmp_vector_[i].get_student_id().substr(0,4) == search_keyword ) {
@@ -105,7 +106,6 @@ void Searching::Search() {
         case 4: //search by department name
             
             std::cout << "department name keyword ? "; //admission year keyword ? 출력하였음
-            cin.ignore(); // 사용자가 공백문자와 함께 여러 문자를 입력했을 때 버퍼 비워서 오류 방지
             getline(cin, input_dept_string_in); //getline 함수로 한줄 입력받기
 
             temp_string = SearchingSplit(input_dept_string_in, ' '); // 공백 기준으로 학과이름 자르기
@@ -127,7 +127,7 @@ void Searching::Search() {
             for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로  담음.
                 student_search_list_.push_back(tmp_vector_[i]);
             }
-            sort(student_search_list_.begin(), student_search_list_.end(), CompareName2);
+            sort(student_search_list_.begin(), student_search_list_.end(), SearchingCompareName);
             break;
 
         default:
@@ -166,7 +166,6 @@ void Searching::SearchingPrint() { //정렬 결과 출력하기
         cout << '+';
     }
     cout << '\n';
-    vector<Student> null_students;
     for (int i = 0; i < student_search_list_.size(); i++) {  //
         cout << '|';
         cout << left << setw(blank_space[0]) << FilterNull(student_search_list_[i].get_name()) << '|';
