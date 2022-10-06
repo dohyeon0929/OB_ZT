@@ -108,6 +108,7 @@ void Searching::Search() {
             break;
     }
 }
+
 void Searching::Print() { //정렬 결과 출력하기 
     int blank_space[] = { 16,12,30,12,12 };
     string col_name[] = { "Name","Student ID","Department","Birth Year","Tel" };
