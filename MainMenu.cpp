@@ -80,15 +80,14 @@ void MainMenu::Search(vector<Student>student_list)
 {
 	Searching s(student_list);
 	while (true) {
-		s.Display();
-		if (s.Input()) {
-			if (s.get_mode() == 6) { // 6. back
+		s.SearchingDisplay();
+		if (s.SearchingInput()) {
+			if (s.get_search_mode_() == 6) { // 6. back
 				break;
 			}
 			else {
 				s.Search();
-				s.Print();
-				break;
+				s.SearchingPrint();
 			}
 		}
 	}
