@@ -55,6 +55,7 @@ bool Insertion::Input() {
                 continue; // 다시 입력하도록 유도
             }
             else { // 입력도 있고 글자수제한도 잘 지킨 경우에
+                if('a'<=input_string[0] && input_string[0]<='z')
                 input_string[0] -= 32; // 이름 첫글자 대문자로 변환
                 set_input_name(input_string); // input_name은 input_string
                 break;
@@ -136,7 +137,7 @@ bool Insertion::Input() {
             }
         }
         else { // 엔터치고 패스하고자 하는 경우 (비필수 입력이니까)
-            set_input_birth_year("~");
+            set_input_birth_year("!");
             break;
         }
     }
@@ -160,7 +161,7 @@ bool Insertion::Input() {
         set_input_dept(input_dept_string_out); // 입력받은 것으로 넣어주기      
     }
     else { // 엔터치고 패스하고자 하는 경우 (비필수 입력이니까)
-        set_input_dept("~");
+        set_input_dept("!");
     }
 
 
@@ -194,7 +195,7 @@ bool Insertion::Input() {
             }
         }
         else { // 엔터치고 패스하고자 하는 경우 (비필수 입력이니까)
-            set_input_tel("~");
+            set_input_tel("!");
             break;
         }
     }
