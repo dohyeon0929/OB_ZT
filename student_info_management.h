@@ -7,8 +7,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
-#include <conio.h> //_getch가 포함되어있는 헤더
-using namespace std; // main 헤더
+using namespace std; 
 
 class Student {
 private:
@@ -18,8 +17,9 @@ private:
     std::string birth_year_;
     std::string tel_;
 public:
-    Student();
-    Student(string name_, string student_id_, string dept_, string birth_year_, string tel_);
+    Student(); //생성자 1
+    Student(string name_, string student_id_, string dept_, string birth_year_, string tel_); //생성자 2
+
     string get_name() { return name_; }
     string get_student_id() { return student_id_; }
     string get_dept() { return dept_; }
@@ -31,80 +31,85 @@ class StudentList {
 private:
     vector<Student>student_info_list_; //student 객체를 담을 리스트(vector)
 public:
-    StudentList(); // 기본 생성자	
-    vector<string> Split(string str, char delimiter); //문자열 파싱
-    void StudentAdd(string name, string student_id,
-        string dept, string birth_year, string tel, vector<Student>student_list); //학생 추가
-    void SaveList(vector<Student>student_list); // 파일에 저장
-    vector<Student>get_student_list() { return student_info_list_; };// student_list 
-    //bool DefaultCompare(Student a, Student b) { return a.get_name() > b.get_name(); };; // 기본 sorting 기능
+    StudentList(); // 생성자 1	
+    StudentList(vector<Student> student_info_list); // 생성자 2
+    vector<string> Split(string str, char delimiter); //파일 파싱하는 메소드
+    void StudentAdd(string name, string student_id, string dept, string birth_year, string tel); // 한 명의 학생 정보 추가
+    void SaveListInFile(vector<Student>student_list); // 파일에 저장
+
+    vector<Student>get_student_list() { return student_info_list_; };// student_info_list 접근자 
+};
+
+class MainMenu {
+private:
+    int mode_; //사용자가 선택한 메뉴
+public:
+    MainMenu(); //생성자 
+    void Start(); //시작 화면
+    void Insert(StudentList& student_list); //insert 기능 수행
+    void Search(StudentList& student_list); //search 기능 수행
+    void Sort(StudentList& student_list); //sort 기능 수행
+    void Exit(); //프로그램 종류
+
+    void set_mode_(string mode_); //mode_ 변경자 
 };
 
 class Insertion {
-private: // 입력받는 항목을 private에 저장
-    string input_name_;
-    string input_studentID_;
+private: 
+    StudentList student_list_; //MainMenu의 student_list를 받아 온다. 
+    string input_name_; //입력받는 항목들을 저장한다. 
+    string input_student_id_;
     string input_dept_;
-    string input_birthYear_;
+    string input_birth_year_;
     string input_tel_;
-    StudentList student_list_; // = student_list
 public:
     Insertion(StudentList& student_list_); // 생성자                 
-    bool set_input_name(string s);
-    bool set_input_student_id(string s);
-    bool set_input_dept(string s);
-    bool set_input_birth_year(string s);
-    bool set_input_tel(string s);
-    bool IsKorean(string s);//입력받은 정보가 한국어로 시작하는지 확인
-    bool Input(); //정보 입력 받기
-    bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
+    void Input(); //정보 입력 받기
+    bool NoSameId(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입
-};
 
-class Searching {
-private:
-    int search_mode_; // 서치 모드 변수
-    StudentList student_list_;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
-    vector<Student> student_search_list_; // 조건에 맞는 student를 담을 새로운 list를 뜻함
-    vector<Student> tmp_vector_;
-public:
-    Searching(StudentList _student_list); //생성자
-    void SearchingDisplay(); //서치 선택시 첫 화면
-    int get_search_mode_() { return search_mode_; }; //서치 모드 접근자
-    bool set_search_mode_(string search_mode_); //서치 모드 변경자 
-    bool SearchingInput();  // 서치모드 입력받기
-    void Search(); //서치
-    void SearchingPrint(); //searchingprint
-    string Filter(string s); // Print할 때 필요한 함수
+    bool set_input_name_(string s);
+    bool set_input_student_id_(string s);
+    bool set_input_dept_(string s);
+    bool set_input_birth_year_(string s);
+    bool set_input_tel_(string s);
 };
 
 class Sorting {
 private:
-    int sort_mode_; //정렬 모드 변수 
+    int sort_mode_ = 1; //정렬 모드 변수 
     StudentList student_list_; //MainMenu의 학생 정보 리스트를 받아올 멤버 변수 
     vector<Student> tmp_vector_; //student_list_에서 vector부분을 저장할 멤버 변수 
 public:
-    Sorting(StudentList student_list);
-    int get_sort_mode_() { return sort_mode_; } //소트 모드 접근자
-    bool set_sort_mode_(string sort_mode_);//소트 모드 변경자 
+    Sorting(StudentList& student_list);
     void SortingDisplay(); //sort 선택 시 첫 화면 
-    bool SortingInput(); //sort 모드 입력 받기 
-    string Filter(string s);
-    void Sort(); //sort 프로세스 
-    void SortingPrint();//정렬 결과 출력
+    void SortingInput(); //sort 모드 입력 받기 
+    vector<Student> Sort(int sort_mode, vector<Student> tmp_vector); //학생 정보 정렬하기 
+    void EnterToFile(); //정렬한 정보를 파일에 저장하기 
+    void Print(vector<Student> tmp_vector);//정렬 결과 출력
+    //string Filter(string s); //파일 내에 저장돼있는 내용 중 일부를 사용자가 이해하기 쉽게 각색해서 출력하게끔 함
+
+    int get_sort_mode_() { return sort_mode_; } //소트 모드 접근자
+    vector<Student> get_tmp_vector_() { return tmp_vector_; }//tmp_vector_ 접근자
+    bool set_sort_mode_(string sort_mode_);//소트 모드 변경자 
 };
 
-class MainMenu
-{
+class Searching : public Sorting{
 private:
-    int mode_;
+    int search_mode_; // 서치 모드 변수
+    StudentList student_list_;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
+    vector<Student> tmp_vector_;
 public:
-    void Start();
-    void set_mode(string mode_); //mode_ 변경자 
-    void Insert(StudentList student_list);
-    void Sort(StudentList student_list);
-    void Search(StudentList student_list);
-    void Exit();
+    Searching(StudentList& student_list); //생성자
+    void SearchingDisplay(); //서치 선택시 첫 화면
+    void SearchingInput();  // 서치모드 입력받기
+    void Search(); //서치
+    void SearchingPrint(); //searchingprint
+
+    int get_search_mode_() { return search_mode_; }; //서치 모드 접근자
+    vector<Student> get_tmp_vector_() { return tmp_vector_; }//tmp_vector_ 접근자
+    bool set_search_mode_(string search_mode_); //서치 모드 변경자 
 };
+
 #endif
 
