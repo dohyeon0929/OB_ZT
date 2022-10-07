@@ -55,6 +55,7 @@ public:
     bool set_input_dept(string s);
     bool set_input_birth_year(string s);
     bool set_input_tel(string s);
+    bool IsKorean(string s);//입력받은 정보가 한국어로 시작하는지 확인
     bool Input(); //정보 입력 받기
     bool CheckError(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입
@@ -74,7 +75,7 @@ public:
     bool SearchingInput();  // 서치모드 입력받기
     void Search(); //서치
     void SearchingPrint(); //searchingprint
-    string FilterNull(string s); // Print할 때 필요한 함수
+    string Filter(string s); // Print할 때 필요한 함수
 };
 
 class Sorting {
@@ -88,7 +89,7 @@ public:
     bool set_sort_mode_(string sort_mode_);//소트 모드 변경자 
     void SortingDisplay(); //sort 선택 시 첫 화면 
     bool SortingInput(); //sort 모드 입력 받기 
-    string FilterNull(string s); //Print할 때 필요한 함수 
+    string Filter(string s);
     void Sort(); //sort 프로세스 
     void SortingPrint();//정렬 결과 출력
 };

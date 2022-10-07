@@ -17,8 +17,9 @@ vector<string> SearchingSplit(string str, char delimeter) { //문자열을 특정 공백
 
     return answer;
 }
-string Searching::FilterNull(string s) { //프린트할때필요함
+string Searching::Filter(string s) { //프린트할때필요함
     if (s == "~")s = "NULL";
+    else if (s[0] == '|')s = s.substr(1);
     return s;
 }  
 
@@ -115,8 +116,8 @@ void Searching::Search() {
                 input_dept_string_out += temp_vector_string;
                 input_dept_string_out += " ";
             }
-                input_dept_string_out.pop_back(); // 맨 끝에 있는 띄어쓰기 없애기
-                search_keyword = input_dept_string_out;
+            input_dept_string_out.pop_back(); // 맨 끝에 있는 띄어쓰기 없애기
+            search_keyword = input_dept_string_out;
             for (int i = 0; i < tmp_vector_.size ();i++) {   //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로 담음.
                 if (tmp_vector_[i].get_dept() == search_keyword ) {
                     student_search_list_.push_back(tmp_vector_[i]);
@@ -135,12 +136,10 @@ void Searching::Search() {
     }
 }
 void Searching::SearchingPrint() { //정렬 결과 출력하기 
-    int blank_space[5] = { 5,10,10,10,11 }; //출력했을 때 각 열에 할당될 칸 수 지정
+    int blank_space[5] = { 5,11,10,10,11 }; //출력했을 때 각 열에 할당될 칸 수 지정
     for (auto student : this->student_search_list_) {
-        blank_space[0] = max(blank_space[0], (int)student.get_name().size());
-        blank_space[1] = max(blank_space[1], (int)student.get_student_id().size());
+        blank_space[0] = max(blank_space[0], (int)student.get_name().size()+1);
         blank_space[2] = max(blank_space[2], (int)student.get_dept().size());
-        blank_space[3] = max(blank_space[3], (int)student.get_birth_year().size());
         blank_space[4] = max(blank_space[4], (int)student.get_tel().size());
     }
     string col_name[] = { "Name","Student ID","Department","Birth Year","Tel" };   //column 값 
@@ -168,11 +167,11 @@ void Searching::SearchingPrint() { //정렬 결과 출력하기
     cout << '\n';
     for (int i = 0; i < student_search_list_.size(); i++) {  //
         cout << '|';
-        cout << left << setw(blank_space[0]) << FilterNull(student_search_list_[i].get_name()) << '|';
-        cout << left << setw(blank_space[1]) << FilterNull(student_search_list_[i].get_student_id()) << '|';
-        cout << left << setw(blank_space[2]) << FilterNull(student_search_list_[i].get_dept()) << '|';
-        cout << left << setw(blank_space[3]) << FilterNull(student_search_list_[i].get_birth_year()) << '|';
-        cout << left << setw(blank_space[4]) << FilterNull(student_search_list_[i].get_tel()) << '|';
+        cout << left << setw(blank_space[0]) << Filter(student_search_list_[i].get_name())  << '|';
+        cout << left << setw(blank_space[1]) << Filter(student_search_list_[i].get_student_id()) << '|';
+        cout << left << setw(blank_space[2]) << Filter(student_search_list_[i].get_dept()) << '|';
+        cout << left << setw(blank_space[3]) << Filter(student_search_list_[i].get_birth_year()) << '|';
+        cout << left << setw(blank_space[4]) << Filter(student_search_list_[i].get_tel()) << '|';
         cout << '\n';
     }
     

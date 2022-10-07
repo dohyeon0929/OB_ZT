@@ -1,6 +1,9 @@
 #include "student_info_management.h"
 
 bool Insertion::set_input_name(string s) {
+    if (IsKorean(s)) {
+        s = "|" + s;
+    }
     input_name_ = s;
     return true;
 }
@@ -9,6 +12,9 @@ bool Insertion::set_input_student_id(string s) {
     return true;
 }
 bool Insertion::set_input_dept(string s) {
+    if (IsKorean(s)) {
+        s = "|" + s;
+    }
     input_dept_ = s;
     return true;
 }
@@ -19,6 +25,9 @@ bool Insertion::set_input_birth_year(string s) {
 bool Insertion::set_input_tel(string s) {
     input_tel_ = s;
     return true;
+}
+bool Insertion::IsKorean(string s) {
+    return !('A' <= s[0] && s[0] <= 'z');
 }
 
 Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오기 
