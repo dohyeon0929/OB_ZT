@@ -22,21 +22,20 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 		cout << "4. Exit" << endl;
 		cout << "> ";
 		getline(cin, input_text); //getline으로 띄어쓰기를 포함한 문장 전체 가지고 오기
-		//set_mode_(input_text);
-		this->mode_ = 4;
+		set_mode_(input_text);
 		switch (this->mode_)
 		{
 		case 1:
-			//MainInsert(list);
+			MainInsert(list);
 			break;
 		case 2:
-			//MainSearch(list);
+			MainSearch(list);
 			break;
 		case 3:
-			//MainSort(list);
+			MainSort(list);
 			break;
 		case 4:
-			//Exit();
+			Exit();
 			break;
 		default:
 			break;
