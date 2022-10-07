@@ -1,9 +1,14 @@
 #include"student_info_management.h"
 
+
 /* 구현에 필요한 메소드가 아닌 함수들 */
 
 
 /* 클래스 내 생성자 및 메소드 */
+
+MainMenu::MainMenu() {
+
+}
 
 void MainMenu::Start() //시작화면, setMode메소드 호출함
 {
@@ -17,20 +22,21 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 		cout << "4. Exit" << endl;
 		cout << "> ";
 		getline(cin, input_text); //getline으로 띄어쓰기를 포함한 문장 전체 가지고 오기
-		set_mode_(input_text);
+		//set_mode_(input_text);
+		this->mode_ = 4;
 		switch (this->mode_)
 		{
 		case 1:
-			Insert(list);
+			//MainInsert(list);
 			break;
 		case 2:
-			Search(list);
+			//MainSearch(list);
 			break;
 		case 3:
-			Sort(list);
+			//MainSort(list);
 			break;
 		case 4:
-			Exit();
+			//Exit();
 			break;
 		default:
 			break;
@@ -38,33 +44,33 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 	}
 }
 
-void MainMenu::Insert(StudentList& student_list) //inseriton실행
+void MainMenu::MainInsert(StudentList& student_list) //inseriton실행
 {
 	Insertion insertion(student_list); //insertion 객체 생성
 	insertion.Input(); 
 	insertion.InsertIn();
 }
 
-void MainMenu::Search(StudentList& student_list)
+void MainMenu::MainSearch(StudentList& student_list)
 {
 	Searching searching(student_list);
 	searching.SearchingInput();
 	if (searching.get_search_mode_() == 6) { return; }// 6. back, 6번을 선택하면 mainmenu의 while문으로 돌아감
 	else {
 		searching.Search();
-		searching.Print(searching.get_tmp_vector_());
+		searching.Print(searching.get_searching_tmp_vector_());
 		return;
 	}
 }
 
-void MainMenu::Sort(StudentList& student_list)
+void MainMenu::MainSort(StudentList& student_list)
 {
 	Sorting sorting(student_list);
 	sorting.SortingInput();
 	if (sorting.get_sort_mode_() == 5) { return; }// 5. back, 5번을 선택하면 mainmenu의 while문으로 돌아감
 	else {
-		sorting.Sort(sorting.get_sort_mode_(), sorting.get_tmp_vector_());
-		sorting.Print(sorting.get_tmp_vector_());
+		sorting.Sort(sorting.get_sort_mode_(), sorting.get_sorting_tmp_vector_());
+		sorting.Print(sorting.get_sorting_tmp_vector_());
 		sorting.EnterToFile();
 		return;
 	}

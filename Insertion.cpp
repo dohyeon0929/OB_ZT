@@ -17,7 +17,7 @@ bool IsKorean(string s) { //한국어로 시작하는지 아닌지 확인
 
 /* 클래스 생성자 및 메소드 */
 
-Insertion::Insertion(StudentList& student_list_) { //student_list 받아 오는 생성자
+Insertion::Insertion(StudentList student_list_) { //student_list 받아 오는 생성자
     this->student_list_ = student_list_;
 }
 

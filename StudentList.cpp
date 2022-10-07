@@ -12,7 +12,7 @@ StudentList::StudentList() //생성자 1
 	{
 		while (getline(file, line))//파일에서 한 줄 씩 읽어올 떄마다
 		{
-			vector<string> readline = Split(line, ';'); //readline에 문장 파싱 값 저장
+			vector<string> readline = StudentListSplit(line, ';'); //readline에 문장 파싱 값 저장
 			for (int i = 0; i < readline.size(); i++)//readline의 원소 개수만큼
 			{
 				if (readline[i] == "")
@@ -33,9 +33,7 @@ StudentList::StudentList() //생성자 1
 		ofstream open("file1.txt"); //파일 생성
 		cout << "file created" << "\n";
 	}
-
 	SaveListInFile(student_info_list_); //생성된 객체 벡터 값 파일에 저장
-	return;
 }
 
 StudentList::StudentList(vector<Student> student_info_list) { //생성자 2
@@ -43,7 +41,7 @@ StudentList::StudentList(vector<Student> student_info_list) { //생성자 2
 }
 
 //1. 문자열 파싱
-vector<string> StudentList::Split(string str, char Delimiter) {
+vector<string> StudentList::StudentListSplit(string str, char Delimiter) {
 	istringstream iss(str);             // istringstream에 str 담기
 	string buffer;                      // 구분자를 기준, 절삭된 문자열 담는 버퍼
 

@@ -2,10 +2,6 @@
 
 /* 구현에 필요한 메소드가 아닌 함수들 */
 
-bool SearchingCompareName(Student a, Student b) { //정렬 1순위 : 이름, 정렬 2순위 : 학번 
-    if (a.get_name() != b.get_name()) return a.get_name() < b.get_name();
-    else return a.get_student_id() < b.get_student_id();
-}
 vector<string> SearchingSplit(string str, char delimeter) { //문자열을 특정 공백 기준으로 나눌 때 필요한 함수 
     vector<string> answer;
     stringstream ss(str);
@@ -19,7 +15,7 @@ vector<string> SearchingSplit(string str, char delimeter) { //문자열을 특정 공백
 
 /* 클래스 생성자 및 메소드 */
 
-Searching::Searching(StudentList& student_list) : Sorting(student_list) { //student_list 받아 오기 
+Searching::Searching(StudentList student_list) : Sorting(student_list) { //student_list 받아 오기 
     this->student_list_ = student_list;
     this->tmp_vector_ = student_list.get_student_list();
 }
@@ -89,9 +85,9 @@ void Searching::Search() {
 
             //띄어쓰기 기준 각 단어의 첫 글자를 대문자로 만들어주기 
             temp_splited_string = SearchingSplit(search_keyword, ' '); // 공백 기준으로 학과이름 자르기
+            search_keyword = "";
             for (auto temp_splited_string_slice : temp_splited_string) { // 잘라진 어절의 첫글자 대문자로 바꾸기
                 temp_splited_string_slice[0] = toupper(temp_splited_string_slice[0]);
-                search_keyword = "";
                 search_keyword += temp_splited_string_slice+" ";
             }
             search_keyword.pop_back(); // 맨 끝에 있는 띄어쓰기 없애기
@@ -108,7 +104,7 @@ void Searching::Search() {
             for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로  담음.
                 student_search_list.push_back(tmp_vector_[i]);
             }
-            student_search_list = Sort(1, student_search_list);
+            student_search_list = Sort(1, student_search_list); //Sorting을 상속해서 Sorting의 Sort를 그대로 사용
             break;
 
         default:

@@ -33,7 +33,7 @@ void PrintTableLine(int blank_space[]) {//print할 때 table의 가로줄 출력
 
 /* 클래스 생성자 및 메소드 */
 
-Sorting::Sorting(StudentList& student_list) { //생성자. 학생 정보 list 받아 오기 
+Sorting::Sorting(StudentList student_list) { //생성자. 학생 정보 list 받아 오기 
     this->student_list_ = student_list; //MainMenu의 Studentlist 받아 오기
     this->tmp_vector_ = student_list_.get_student_list(); //StudentList의 vector부분 따로 저장 
 }
@@ -57,11 +57,6 @@ void Sorting::SortingInput() { //정렬 모드 입력 받기. 예외처리 목적
     }
 }
 
-string Filter(string s) { //파일 내에서 ~로 표시돼있는 부분을 출력할 때에는 NULL로 표시하기 위해 필요한 메서드
-    if (s == "~")s = "NULL"; //만약 해당 string이 "~"면 이를 NULL로 변환
-    else if (s[0] == '|')s = s.substr(1);
-    return s; //변환한 string을 반환
-}
 
 vector<Student> Sorting::Sort(int sort_mode, vector<Student> tmp_vector) {
     switch (sort_mode) { //입력받은 기준에 따라 정렬하기
@@ -111,6 +106,12 @@ void Sorting::Print(vector<Student> tmp_vector) { //정렬 결과 출력하기
         cout << '\n';
     }
     PrintTableLine(blank_space);
+}
+
+string Sorting::Filter(string s) { //파일 내에서 ~로 표시돼있는 부분을 출력할 때에는 NULL로 표시하기 위해 필요한 메서드
+    if (s == "~")s = "NULL"; //만약 해당 string이 "~"면 이를 NULL로 변환
+    else if (s[0] == '|')s = s.substr(1);
+    return s; //변환한 string을 반환
 }
 
 void Sorting::EnterToFile() {
