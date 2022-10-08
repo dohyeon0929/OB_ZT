@@ -12,10 +12,12 @@ MainMenu::MainMenu() {
 
 void MainMenu::Start() //시작화면, setMode메소드 호출함
 {
+	bool is_sorted=false; //프로그램 실행 중 정렬을 한 번이라도 했는지 체크
 	while (1)
 	{
-		StudentList list;
-		string input_text;
+		StudentList list; //Student 정보를 담으르 StudentList 객체
+		string input_text; //사용자에게 메뉴 및 모드 입력받을 문자열 
+		list.set_is_sorted_(is_sorted); //list에 한 번이라도 정렬됐었는지 여부를 저장해준다
 		cout << "1. Insertion" << endl;
 		cout << "2. Search" << endl;
 		cout << "3. Sorting Option" << endl;
@@ -33,6 +35,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 			break;
 		case 3:
 			MainSort(list);
+			is_sorted = true;
 			break;
 		case 4:
 			Exit();
