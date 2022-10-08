@@ -29,7 +29,8 @@ public:
 
 class StudentList {
 private:
-    vector<Student>student_info_list_; //student 객체를 담을 리스트(vector)
+    bool is_sorted_; //Sorting으로 정렬했는지 여부 체크
+    vector<Student> student_info_list_; //student 객체를 담을 리스트(vector)
 public:
     StudentList(); // 생성자 1	
     StudentList(vector<Student> student_info_list); // 생성자 2
@@ -37,6 +38,8 @@ public:
     void StudentAdd(string name, string student_id, string dept, string birth_year, string tel); // 한 명의 학생 정보 추가
     void SaveListInFile(vector<Student>student_list); // 파일에 저장
 
+    bool get_is_sorted_() { return is_sorted_; } //is_sorted_ 접근자
+    void set_is_sorted_(bool is_sorted) { this->is_sorted_ = is_sorted; };
     vector<Student>get_student_list() { return student_info_list_; };// student_info_list 접근자 
 };
 
@@ -64,7 +67,7 @@ private:
     string input_birth_year_;
     string input_tel_;
 public:
-    Insertion(StudentList student_list_); // 생성자                 
+    Insertion(StudentList& student_list_); // 생성자                 
     void Input(); //정보 입력 받기
     bool NoSameId(); //student_list에서 받아온 ID와 중복되는지 검사
     void InsertIn();//삽입
@@ -78,11 +81,11 @@ public:
 
 class Sorting {
 private:
-    int sort_mode_; //정렬 모드 변수 
+    int sort_mode_=0; //정렬 모드 변수 
     StudentList student_list_; //MainMenu의 학생 정보 리스트를 받아올 멤버 변수 
     vector<Student> tmp_vector_; //student_list_에서 vector부분을 저장할 멤버 변수 
 public:
-    Sorting(StudentList student_list);
+    Sorting(StudentList& student_list);
     void SortingDisplay(); //sort 선택 시 첫 화면 
     void SortingInput(); //sort 모드 입력 받기 
     vector<Student> Sort(int sort_mode, vector<Student> tmp_vector); //학생 정보 정렬하기 
@@ -101,7 +104,7 @@ private:
     StudentList student_list_;    //탐색할 student_list , 즉 현재까지 누적된 list를 뜻함
     vector<Student> tmp_vector_;
 public:
-    Searching(StudentList student_list); //생성자
+    Searching(StudentList& student_list); //생성자
     void SearchingDisplay(); //서치 선택시 첫 화면
     void SearchingInput();  // 서치모드 입력받기
     void Search(); //서치

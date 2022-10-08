@@ -15,7 +15,7 @@ vector<string> SearchingSplit(string str, char delimeter) { //문자열을 특정 공백
 
 /* 클래스 생성자 및 메소드 */
 
-Searching::Searching(StudentList student_list) : Sorting(student_list) { //student_list 받아 오기 
+Searching::Searching(StudentList& student_list) : Sorting(student_list) { //student_list 받아 오기 
     this->student_list_ = student_list;
     this->tmp_vector_ = student_list.get_student_list();
 }
@@ -104,7 +104,8 @@ void Searching::Search() {
             for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로  담음.
                 student_search_list.push_back(tmp_vector_[i]);
             }
-            student_search_list = Sort(1, student_search_list); //Sorting을 상속해서 Sorting의 Sort를 그대로 사용
+            if(!student_list_.get_is_sorted_())
+                student_search_list = Sort(1, student_search_list); //Sorting을 상속해서 Sorting의 Sort를 그대로 사용
             break;
 
         default:

@@ -33,9 +33,9 @@ void PrintTableLine(int blank_space[]) {//print할 때 table의 가로줄 출력
 
 /* 클래스 생성자 및 메소드 */
 
-Sorting::Sorting(StudentList student_list) { //생성자. 학생 정보 list 받아 오기 
+Sorting::Sorting(StudentList& student_list) { //생성자. 학생 정보 list 받아 오기 
     this->student_list_ = student_list; //MainMenu의 Studentlist 받아 오기
-    this->tmp_vector_ = student_list_.get_student_list(); //StudentList의 vector부분 따로 저장 
+    this->tmp_vector_ = student_list_.get_student_list(); //StudentList의 vector부분 따로 저장
 }
 
 void Sorting::SortingDisplay() {//사용자에게 보여지는 출력창
