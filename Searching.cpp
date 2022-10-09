@@ -15,7 +15,7 @@ vector<string> SearchingSplit(string str, char delimeter) { //문자열을 특정 공백
 
 /* 클래스 생성자 및 메소드 */
 
-Searching::Searching(StudentList& student_list) : Sorting(student_list) { //student_list 받아 오기 
+Searching::Searching(StudentList student_list) : Sorting(student_list) { //student_list 받아 오기 
     this->student_list_ = student_list;
     this->tmp_vector_ = student_list.get_student_list();
 }
@@ -118,7 +118,7 @@ void Searching::Search() {
             break;
     }
 
-    tmp_vector_ = student_search_list; //검색 조건에 맞는 학생 정보만 따로 저장해두기 
+    this->tmp_vector_ = student_search_list; //검색 조건에 맞는 학생 정보만 따로 저장해두기 
 }
 
 

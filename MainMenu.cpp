@@ -11,7 +11,7 @@ MainMenu::MainMenu() {
 
 void MainMenu::Start() //시작화면, setMode메소드 호출함
 {
-	bool is_sorted=false; //프로그램 실행 중 정렬을 한 번이라도 했는지 체크
+	int is_sorted=0; //프로그램 실행 중 정렬을 한 번이라도 했는지 체크
 	while (1)
 	{
 		StudentList list; //Student 정보를 담으르 StudentList 객체
@@ -47,8 +47,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 			MainSearch(list);
 			break;
 		case 3:
-			MainSort(list);
-			is_sorted = true;
+			is_sorted = MainSort(list);
 			break;
 		case 4:
 			Exit();
@@ -64,6 +63,10 @@ void MainMenu::MainInsert(StudentList& student_list) //inseriton실행
 	Insertion insertion(student_list); //insertion 객체 생성
 	insertion.Input(); 
 	insertion.InsertIn();
+	if (student_list.get_is_sorted_()) {
+		insertion.Sort(student_list.get_is_sorted_(), insertion.get_tmp_vector_());
+		insertion.EnterToFile();
+	}
 }
 
 void MainMenu::MainSearch(StudentList& student_list)
@@ -78,16 +81,16 @@ void MainMenu::MainSearch(StudentList& student_list)
 	}
 }
 
-void MainMenu::MainSort(StudentList& student_list)
+int MainMenu::MainSort(StudentList& student_list)
 {
 	Sorting sorting(student_list);
 	sorting.SortingInput();
-	if (sorting.get_sort_mode_() == 5) { return; }// 5. back, 5번을 선택하면 mainmenu의 while문으로 돌아감
+	if (sorting.get_sort_mode_() == 5) { return sorting.get_sort_mode_(); }// 5. back, 5번을 선택하면 mainmenu의 while문으로 돌아감
 	else {
 		sorting.Sort(sorting.get_sort_mode_(), sorting.get_sorting_tmp_vector_());
 		sorting.Print(sorting.get_sorting_tmp_vector_());
 		sorting.EnterToFile();
-		return;
+		return sorting.get_sort_mode_();
 	}
 }
 

@@ -59,7 +59,6 @@ void StudentList::StudentAdd(string name, string studentID,
 {
 	Student new_student(name, studentID, dept, birthYear, tel);
 	student_info_list_.push_back(new_student);  //vector의 맨 마지막에 student 객체 추가
-	//sort(student_list.begin(), student_list.end(), DefaultCompare); // 기본 설정으로 정렬
 	SaveListInFile(student_info_list_); //파일에 저장
 }
 
