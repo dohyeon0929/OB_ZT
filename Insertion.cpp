@@ -189,6 +189,12 @@ bool Insertion::set_input_birth_year_(string input_string) {
 
 bool Insertion::set_input_tel_(string input_string) {
     if (input_string != "") { // 입력이 있는 경우에
+        for (int i = 0; i < input_string.size(); i++) {
+            if (!('A'<=input_string[i]&&input_string[i]<='z') && !('0'<=input_string[i] && input_string[i]<='9')) { //영어도 숫자도 아닌 걸 입력받으면
+                cout << "Error : Invaild input , Tel is up to 12 digit number.\n"; // 오류메세지 띄우고
+                return false;
+            }
+        }
         if (input_string.size() > 12) { // 12글자까지임
             cout << "Error : Invaild input , Tel is up to 12 digit number.\n"; // 오류메세지 띄우고
             return false;
