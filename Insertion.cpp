@@ -75,7 +75,10 @@ void Insertion::InsertIn()
 {
     if (NoSameId()) //중복된 ID가 아니므로 삽입
     {
-        student_list_.StudentAdd(input_name_, input_student_id_, input_dept_, input_birth_year_, input_tel_);
+        Student new_student = { input_name_, input_student_id_, input_dept_, input_birth_year_, input_tel_ };
+        student_list_.StudentAdd(new_student);
+        tmp_vector_.push_back(new_student);
+        cout << "Saved successfully" << endl;
     }
     else //중복된 ID이므로 
     {

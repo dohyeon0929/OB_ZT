@@ -14,19 +14,11 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 	int is_sorted=0; //프로그램 실행 중 정렬을 한 번이라도 했는지 체크
 	while (1)
 	{
-		StudentList list; //Student 정보를 담으르 StudentList 객체
+		StudentList list; //Student 정보를 담을 StudentList 객체
 		string input_text; //사용자에게 메뉴 및 모드 입력받을 문자열 
 		list.set_is_sorted_(is_sorted); //list에 한 번이라도 정렬됐었는지 여부를 저장해준다
 
-		//타이틀에 뭔가 넣고 싶어서 이것 저것 트라이하는 중
-		//const char32_t* s32 = U"⣿⠿⢿⡿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⡿⣿⣿⡿⣿⣿⣿⡿⣻⣿⣿⣿⣿⠿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿";
-		//wcout << s32 << endl;
-		//⣿⠿⢿⡿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⡿⣿⣿⡿⣿⣿⣿⡿⣻⣿⣿⣿⣿⠿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-		//⣿⣬⠻⡅⣽⢹⠉⡏⣭⢸⢉⣋⡏⣭⢹⡅⣽⣿⡇⡏⣽⢹⡅⡝⢩⡍⣿⣿⢰⡹⢱⢸⢝⡉⡏⣭⢹⢝⡉⡏⣭⢹⢉⣋⡏⣭⢩⡍⡏⣋⣹⢩⡍⡇⣭⣿
-		//⣿⣶⣾⣷⣾⣶⣶⣷⣶⣾⣷⣶⣷⣿⣾⣷⣾⣿⣷⣷⣿⣾⣷⣿⣶⣾⣿⣿⣾⣷⣿⣾⣶⣶⣷⣿⣾⣶⣶⣗⣒⣸⣶⣶⣷⣿⣾⣷⣷⣶⣿⣾⣷⣷⣶⣿
-
 		cout << "\n-Student Info Management-" << endl;
-
 		cout << "+-----------------------+" << std::endl;
 		cout << "| 1. Insertion          |" << endl;
 		cout << "|-----------------------|" << std::endl;
@@ -58,7 +50,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 	}
 }
 
-void MainMenu::MainInsert(StudentList& student_list) //inseriton실행
+void MainMenu::MainInsert(StudentList student_list) //inseriton실행
 {
 	Insertion insertion(student_list); //insertion 객체 생성
 	insertion.Input(); 
@@ -69,7 +61,7 @@ void MainMenu::MainInsert(StudentList& student_list) //inseriton실행
 	}
 }
 
-void MainMenu::MainSearch(StudentList& student_list)
+void MainMenu::MainSearch(StudentList student_list)
 {
 	Searching searching(student_list);
 	searching.SearchingInput();
@@ -81,7 +73,7 @@ void MainMenu::MainSearch(StudentList& student_list)
 	}
 }
 
-int MainMenu::MainSort(StudentList& student_list)
+int MainMenu::MainSort(StudentList student_list)
 {
 	Sorting sorting(student_list);
 	sorting.SortingInput();

@@ -35,7 +35,7 @@ public:
     StudentList(); // 생성자 1	
     StudentList(vector<Student> student_info_list); // 생성자 2
     vector<string> StudentListSplit(string str, char delimiter); //파일 파싱하는 메소드
-    void StudentAdd(string name, string student_id, string dept, string birth_year, string tel); // 한 명의 학생 정보 추가
+    void StudentAdd(Student new_student); // 한 명의 학생 정보 추가
     void SaveListInFile(vector<Student>student_list); // 파일에 저장
 
     int get_is_sorted_() { return is_sorted_; } //is_sorted_ 접근자
@@ -49,9 +49,9 @@ private:
 public:
     MainMenu();
     void Start(); //시작 화면
-    void MainInsert(StudentList& student_list); //insert 기능 수행
-    void MainSearch(StudentList& student_list); //search 기능 수행
-    int MainSort(StudentList& student_list); //sort 기능 수행
+    void MainInsert(StudentList student_list); //insert 기능 수행
+    void MainSearch(StudentList student_list); //search 기능 수행
+    int MainSort(StudentList student_list); //sort 기능 수행
     void Exit(); //프로그램 종료
 
     int get_mode_() { return mode_; }

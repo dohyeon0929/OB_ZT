@@ -22,7 +22,6 @@ StudentList::StudentList() //생성자 1
 				info[i] = readline[i]; //student 객체 파라미터에 들어갈 값 배열에 저장
 			}
 			Student result(info[0], info[1], info[2], info[3], info[4]); //객체 생성
-
 			this->student_info_list_.push_back(result); //vector에 넣어주기
 		}
 		//sort(this->student_info_list_.begin(), this->student_info_list_.end(), DefaultCompare);
@@ -54,10 +53,8 @@ vector<string> StudentList::StudentListSplit(string str, char Delimiter) {
 	return readline; //절삭된 문자열 리턴
 }
 //2. 학생 추가
-void StudentList::StudentAdd(string name, string studentID,
-	string dept, string birthYear, string tel)
+void StudentList::StudentAdd(Student new_student)
 {
-	Student new_student(name, studentID, dept, birthYear, tel);
 	student_info_list_.push_back(new_student);  //vector의 맨 마지막에 student 객체 추가
 	SaveListInFile(student_info_list_); //파일에 저장
 }
