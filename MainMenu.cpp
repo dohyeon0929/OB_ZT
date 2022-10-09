@@ -1,6 +1,5 @@
 #include"student_info_management.h"
 
-
 /* 구현에 필요한 메소드가 아닌 함수들 */
 
 
@@ -18,11 +17,25 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 		StudentList list; //Student 정보를 담으르 StudentList 객체
 		string input_text; //사용자에게 메뉴 및 모드 입력받을 문자열 
 		list.set_is_sorted_(is_sorted); //list에 한 번이라도 정렬됐었는지 여부를 저장해준다
-		cout << "1. Insertion" << endl;
-		cout << "2. Search" << endl;
-		cout << "3. Sorting Option" << endl;
-		cout << "4. Exit" << endl;
-		cout << "> ";
+
+		//타이틀에 뭔가 넣고 싶어서 이것 저것 트라이하는 중
+		//const char32_t* s32 = U"⣿⠿⢿⡿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⡿⣿⣿⡿⣿⣿⣿⡿⣻⣿⣿⣿⣿⠿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿";
+		//wcout << s32 << endl;
+		//⣿⠿⢿⡿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⡿⣿⣿⡿⣿⣿⣿⡿⣻⣿⣿⣿⣿⠿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+		//⣿⣬⠻⡅⣽⢹⠉⡏⣭⢸⢉⣋⡏⣭⢹⡅⣽⣿⡇⡏⣽⢹⡅⡝⢩⡍⣿⣿⢰⡹⢱⢸⢝⡉⡏⣭⢹⢝⡉⡏⣭⢹⢉⣋⡏⣭⢩⡍⡏⣋⣹⢩⡍⡇⣭⣿
+		//⣿⣶⣾⣷⣾⣶⣶⣷⣶⣾⣷⣶⣷⣿⣾⣷⣾⣿⣷⣷⣿⣾⣷⣿⣶⣾⣿⣿⣾⣷⣿⣾⣶⣶⣷⣿⣾⣶⣶⣗⣒⣸⣶⣶⣷⣿⣾⣷⣷⣶⣿⣾⣷⣷⣶⣿
+
+		cout << "\n-Student Info Management-" << endl;
+
+		cout << "+-----------------------+" << std::endl;
+		cout << "| 1. Insertion          |" << endl;
+		cout << "|-----------------------|" << std::endl;
+		cout << "| 2. Search             |" << endl;
+		cout << "|-----------------------|" << std::endl;
+		cout << "| 3. Sorting Option     |" << endl;
+		cout << "|-----------------------|" << std::endl;
+		cout << "| 4. Exit               |" << endl;
+		cout << "+-----------------------+" << std::endl;
 		getline(cin, input_text); //getline으로 띄어쓰기를 포함한 문장 전체 가지고 오기
 		set_mode_(input_text);
 		switch (this->mode_)

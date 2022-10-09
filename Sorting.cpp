@@ -39,13 +39,18 @@ Sorting::Sorting(StudentList& student_list) { //생성자. 학생 정보 list 받아 오기
 }
 
 void Sorting::SortingDisplay() {//사용자에게 보여지는 출력창
-    cout << "- Sorting Option"<<endl;
-    cout << "1. Sort by Name" << endl;
-    cout << "2. Sort by Student ID" << endl;
-    cout << "3. Sort by Admission Year" << endl;
-    cout << "4. Sort by Department name" << endl;
-    cout << "5. Go back"<<endl;
-    cout << "> ";
+    std::cout << "- Sorting Option -" << std::endl; //- Search -가 출력됩니다.
+    std::cout << "+-----------------------------+" << std::endl;
+    std::cout << "| 1. Sort by Name             |" << std::endl;//"1. Sort by Name"가 출력됩니다.
+    std::cout << "|-----------------------------+" << std::endl;
+    std::cout << "| 2. Sort by Student ID       |" << std::endl;//"2. Sort by Student ID (10 numbers)"가 출력됩니다.
+    std::cout << "|-----------------------------+" << std::endl;
+    std::cout << "| 3. Sort by Admission Year   |" << std::endl;//3. Sort by Admission Year (4 numbers)가 출력됩니다.
+    std::cout << "|-----------------------------+" << std::endl;
+    std::cout << "| 4. Sort by Department name  |" << std::endl;//"4. Sort by Department name"가 출력됩니다.
+    std::cout << "|-----------------------------+" << std::endl;
+    std::cout << "| 5. Go back                  |" << std::endl;//"5. List All" 가 출력됩니다.
+    std::cout << "|-----------------------------+" << std::endl;
 }
 
 void Sorting::SortingInput() { //정렬 모드 입력 받기. 예외처리 목적 

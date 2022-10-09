@@ -21,14 +21,20 @@ Searching::Searching(StudentList& student_list) : Sorting(student_list) { //stud
 }
 
 void Searching::SearchingDisplay() { // 서치 첫 화면 디스플레이
-	std::cout << "- Search -" << std::endl; //- Search -가 출력됩니다.
-	std::cout << "1. Search by name" << std::endl;//"1. Search by name"가 출력됩니다.
-	std::cout << "2. Search by student ID (10 numbers)" << std::endl;//"2. Search by student ID (10 numbers)"가 출력됩니다.
-	std::cout << "3. Search by admission year (4 numbers)" << std::endl;//3. Search by admission year (4 numbers)가 출력됩니다.
-	std::cout << "4. Search by department name" << std::endl;//"4. Search by department name"가 출력됩니다.
-	std::cout << "5. List All" << std::endl;//"5. List All" 가 출력됩니다.
-    std::cout << "6. Go back" << std::endl;//"6. Go back"가 출력됩니다.
-    std::cout << "> ";
+    std::cout << "- Search -" << std::endl; //- Search -가 출력됩니다.
+    std::cout << "+-----------------------------------------+" << std::endl;
+    std::cout << "| 1. Search by name                       |" << std::endl;//"1. Search by name"가 출력됩니다.
+    std::cout << "|-----------------------------------------+" << std::endl;
+    std::cout << "| 2. Search by student ID (10 numbers)    |" << std::endl;//"2. Search by student ID (10 numbers)"가 출력됩니다.
+    std::cout << "|-----------------------------------------+" << std::endl;
+    std::cout << "| 3. Search by admission year (4 numbers) |" << std::endl;//3. Search by admission year (4 numbers)가 출력됩니다.
+    std::cout << "|-----------------------------------------+" << std::endl;
+    std::cout << "| 4. Search by department name            |" << std::endl;//"4. Search by department name"가 출력됩니다.
+    std::cout << "|-----------------------------------------+" << std::endl;
+    std::cout << "| 5. List All                             |" << std::endl;//"5. List All" 가 출력됩니다.
+    std::cout << "|-----------------------------------------+" << std::endl;
+    std::cout << "| 6. Go back                              |" << std::endl;//"6. Go back"가 출력됩니다.
+    std::cout << "+-----------------------------------------+" << std::endl;
 }
 
 void Searching::SearchingInput() { //  서치 모드 입력 받기 
