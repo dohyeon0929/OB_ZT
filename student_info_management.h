@@ -32,7 +32,8 @@ private:
     int is_sorted_; //Sorting으로 정렬했는지 여부 체크
     vector<Student> student_info_list_; //student 객체를 담을 리스트(vector)
 public:
-    StudentList(); // 생성자 1	
+    StudentList(int is_sorted); // 생성자 1
+    StudentList(); // 생성자 2	
     StudentList(vector<Student> student_info_list); // 생성자 2
     vector<string> StudentListSplit(string str, char delimiter); //파일 파싱하는 메소드
     void StudentAdd(Student new_student); // 한 명의 학생 정보 추가

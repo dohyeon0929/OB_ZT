@@ -18,7 +18,7 @@ bool IsKorean(string s) { //한국어로 시작하는지 아닌지 확인
 /* 클래스 생성자 및 메소드 */
 
 Insertion::Insertion(StudentList student_list): Sorting(student_list) { //student_list 받아 오는 생성자
-    this->student_list_ = student_list_;
+    this->student_list_ = student_list;
     this->tmp_vector_ = student_list_.get_student_list();
 }
 
@@ -77,7 +77,7 @@ void Insertion::InsertIn()
     {
         Student new_student = { input_name_, input_student_id_, input_dept_, input_birth_year_, input_tel_ };
         student_list_.StudentAdd(new_student);
-        tmp_vector_.push_back(new_student);
+        tmp_vector_ = student_list_.get_student_list();
         cout << "Saved successfully" << endl;
     }
     else //중복된 ID이므로 

@@ -14,7 +14,7 @@ void MainMenu::Start() //시작화면, setMode메소드 호출함
 	int is_sorted=0; //프로그램 실행 중 정렬을 한 번이라도 했는지 체크
 	while (1)
 	{
-		StudentList list; //Student 정보를 담을 StudentList 객체
+		StudentList list(is_sorted); //Student 정보를 담을 StudentList 객체
 		string input_text; //사용자에게 메뉴 및 모드 입력받을 문자열 
 		list.set_is_sorted_(is_sorted); //list에 한 번이라도 정렬됐었는지 여부를 저장해준다
 

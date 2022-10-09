@@ -2,8 +2,9 @@
 
 /* 클래스 내 생성자 및 메소드 */
 
-StudentList::StudentList() //생성자 1
+StudentList::StudentList(int is_sorted) //생성자 1
 {
+	this->is_sorted_ = is_sorted;
 	string info[5]; //student 객체의 각 속성
 	fstream file;
 	string line; //파일의 한 줄 저장
@@ -35,7 +36,11 @@ StudentList::StudentList() //생성자 1
 	SaveListInFile(student_info_list_); //생성된 객체 벡터 값 파일에 저장
 }
 
-StudentList::StudentList(vector<Student> student_info_list) { //생성자 2
+StudentList::StudentList() { //생성자 2
+
+}
+
+StudentList::StudentList(vector<Student> student_info_list) { //생성자 3
 	this->student_info_list_ = student_info_list;
 }
 

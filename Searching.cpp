@@ -50,6 +50,9 @@ void Searching::Search() {
     string search_keyword;
     vector<Student> student_search_list; // 조건에 맞는 student를 담을 새로운 list를 뜻함
     vector<string> temp_splited_string; //dept 입력받을 때 임시로 데이터를 저장할 변수
+    if (!student_list_.get_is_sorted_()) {// 플레이어가 이전에 정렬을 하지 않았을 경우
+        tmp_vector_ = Sort(1, tmp_vector_);//Sorting을 상속해서 Sorting의 Sort를 그대로 사용
+    }
 
     switch (search_mode_) { //입력받은 기준에 따라 search 하기
 
@@ -110,8 +113,6 @@ void Searching::Search() {
             for (int i = 0; i < tmp_vector_.size(); i++) {    //student_list_size 메소드로 크기 확인, for문으로 조건문에 해당하는 student_list의 원소를 student_search_list라는 새 list에 pushback함수로  담음.
                 student_search_list.push_back(tmp_vector_[i]);
             }
-            if(!student_list_.get_is_sorted_())
-                student_search_list = Sort(1, student_search_list); //Sorting을 상속해서 Sorting의 Sort를 그대로 사용
             break;
 
         default:
